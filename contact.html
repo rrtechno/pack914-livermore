@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Join Cub Scout Pack 914 Livermore or contact us with questions about our program."/>
+  <title>Join Us | Pack 914 Cub Scouts – Livermore</title>
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script src="urls/config.js"></script>
+  <style>
+    body { padding-top:var(--nav-h); }
+    .contact-wrap { max-width:var(--max-w); margin:0 auto; padding:64px 24px 80px; }
+
+    .contact-grid {
+      display:grid;
+      grid-template-columns:1fr 1.7fr;
+      gap:48px;
+      align-items:start;
+    }
+
+    /* Left info panel */
+    .contact-info { display:flex; flex-direction:column; gap:16px; }
+
+    .info-card {
+      background:var(--white); border:1px solid var(--gray-200);
+      border-radius:var(--radius-md); padding:20px;
+      display:flex; gap:14px; align-items:flex-start;
+      box-shadow:var(--shadow-sm);
+    }
+    .info-card .icon {
+      width:46px; height:46px; border-radius:var(--radius-sm);
+      background:var(--gold-lt); font-size:1.4rem;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .info-card h4 { font-size:.88rem; font-weight:800; color:var(--navy); margin-bottom:4px; }
+    .info-card p  { font-size:.83rem; color:var(--gray-500); line-height:1.5; }
+    .info-card a  { color:var(--blue); font-weight:600; }
+
+    /* Steps */
+    .steps-list { margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+    .step-row {
+      display:flex; gap:12px; align-items:flex-start;
+      background:var(--white); border:1px solid var(--gray-200);
+      border-radius:var(--radius-md); padding:16px; box-shadow:var(--shadow-sm);
+    }
+    .step-num {
+      width:32px; height:32px; border-radius:50%;
+      background:var(--navy); color:var(--white);
+      font-size:.85rem; font-weight:800; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .step-row h4 { font-size:.85rem; font-weight:800; color:var(--navy); margin-bottom:2px; }
+    .step-row p  { font-size:.78rem; color:var(--gray-500); }
+
+    /* Right form panel */
+    .form-panel {
+      background:var(--white); border:1px solid var(--gray-200);
+      border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-md);
+    }
+    .form-header {
+      background:var(--navy); padding:20px 24px;
+      display:flex; align-items:center; gap:12px;
+    }
+    .form-header h3 { color:var(--white); font-size:1rem; font-weight:800; }
+    .form-header p  { color:#94A3B8; font-size:.8rem; margin-top:2px; }
+
+    .form-body { padding:8px; }
+    .form-body iframe { width:100%; height:680px; border:none; display:block; border-radius:var(--radius-sm); }
+
+    .form-placeholder {
+      height:620px; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; gap:20px; padding:40px; text-align:center;
+    }
+    .form-placeholder .big { font-size:3.5rem; }
+    .form-placeholder h3 { font-size:1.1rem; font-weight:800; color:var(--navy); }
+    .form-placeholder p { font-size:.88rem; color:var(--gray-500); max-width:340px; }
+    .form-placeholder code { background:var(--gray-100); padding:2px 8px; border-radius:4px; font-size:.82rem; }
+
+    /* BSA register banner */
+    .bsa-banner {
+      background:linear-gradient(135deg,var(--navy) 0%,#2B5BB5 100%);
+      border-radius:var(--radius-lg); padding:36px 40px;
+      display:flex; gap:28px; align-items:center; margin-top:52px;
+      flex-wrap:wrap;
+    }
+    .bsa-banner .text h3 { font-family:var(--font-display); font-size:1.4rem; color:var(--white); margin-bottom:8px; }
+    .bsa-banner .text p  { color:#94A3B8; font-size:.9rem; max-width:480px; }
+    .bsa-banner .actions { margin-left:auto; display:flex; gap:12px; flex-wrap:wrap; flex-shrink:0; }
+
+    @media(max-width:860px) {
+      .contact-grid { grid-template-columns:1fr; }
+      .bsa-banner { flex-direction:column; }
+      .bsa-banner .actions { margin-left:0; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="announcement" role="alert"></div>
+
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="images/logo.jpg" alt="Pack 914 logo" onerror="this.style.display='none'"><span class="nav-logo-text"><span class="pack">Cub Scouts</span><BR><span class="name">Pack 914</span></span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About</a></li><li><a href="calendar.html">Calendar</a></li>
+      <li><a href="ranks.html">Ranks</a></li><li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="btn-join active">Join Us ⚜</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <span class="label">Welcome to the Pack</span>
+  <h1>Join Us / Contact</h1>
+  <p>Ready to join Pack 914, or have a question? We'd love to hear from you!</p>
+</div>
+
+<main id="main">
+<div class="contact-wrap">
+
+  <div class="contact-grid">
+
+    <!-- LEFT: Info & steps -->
+    <div>
+      <span class="section-label">Get In Touch</span>
+      <h2 class="section-title">Contact Pack 914</h2>
+      <div class="divider"></div>
+
+      <div class="contact-info" style="margin-bottom:32px;">
+        <div class="info-card">
+          <div class="icon">📍</div>
+          <div><h4>Location</h4><p>Livermore, California<br>Tri-Valley Council, BSA</p></div>
+        </div>
+        <div class="info-card">
+          <div class="icon">📅</div>
+          <div><h4>Pack Meetings</h4><p>Monthly — check the <a href="calendar.html">Calendar</a> for exact dates and times.</p></div>
+        </div>
+        <div class="info-card">
+          <div class="icon">🏕️</div>
+          <div><h4>Den Meetings</h4><p>Each den meets 1–2 times per month. Den leaders set their own schedule.</p></div>
+        </div>
+        <div class="info-card">
+          <div class="icon">🌐</div>
+          <div><h4>Online Registration</h4><p>Official registration is done at <a href="https://www.scouting.org/programs/cub-scouts/join/" target="_blank" rel="noopener">Scouting.org</a>. Fill out the form and we'll be in touch!</p></div>
+        </div>
+      </div>
+
+      <h3 style="font-family:var(--font-display);font-size:1.1rem;color:var(--navy);margin-bottom:16px;">How to Join — 4 Easy Steps</h3>
+      <div class="steps-list">
+        <div class="step-row"><div class="step-num">1</div><div><h4>Fill Out the Form →</h4><p>Use the contact form on the right to introduce yourself, or go straight to Scouting.org to register.</p></div></div>
+        <div class="step-row"><div class="step-num">2</div><div><h4>Attend a Meeting</h4><p>We'll invite you to a Pack or den meeting. Come see what we're all about — no commitment needed!</p></div></div>
+        <div class="step-row"><div class="step-num">3</div><div><h4>Register Online</h4><p>Complete your BSA registration at <a href="https://www.scouting.org/programs/cub-scouts/join/" target="_blank" rel="noopener">Scouting.org</a>. Annual dues apply.</p></div></div>
+        <div class="step-row"><div class="step-num">4</div><div><h4>Get Uniformed & Start!</h4><p>Pick up your uniform from the <a href="https://www.scoutshop.org/" target="_blank" rel="noopener">Scout Shop</a> and you're officially a Cub Scout!</p></div></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Google Form embed -->
+    <div class="form-panel fade-in" style="animation-delay:.08s">
+      <div class="form-header">
+        <div>
+          <h3>📝 Contact / Interest Form</h3>
+          <p>Questions? Joining? Just say hi — we'll get back to you soon.</p>
+        </div>
+      </div>
+      <div class="form-body">
+        <!-- iframe src injected by JS from urls/config.js -->
+        <div style="position: relative; width: 100%; padding-bottom: 150%; height: 0; overflow: hidden; max-width: 760px; margin: 0 auto;">
+        <iframe 
+          id="contact-iframe" src="" 
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" 
+          allowfullscreen
+          title="Pack 914 Contact Form" loading="lazy" frameborder="0">
+          Loading…
+        </iframe>
+      </div>
+      <!-- DIRECT ACTION LINK (Moved safely outside the overflow div so it renders properly) -->
+      <div style="text-align: center; margin: 15px 0;">
+        <a href="https://my.scouting.org/online-registration/4ba44eb1-627e-4a42-97ae-2b34f2e5962e/applicant-type" target="_blank" rel="noopener" class="btn btn-primary" style="display: inline-block; padding: 10px 20px; text-decoration: none; border-radius: 4px;">⚜ Register Directly on Scouting.org</a>
+      </div>
+              
+        <div id="form-placeholder" class="form-placeholder">
+          <div class="big">📝</div>
+          <h3>Contact Form</h3>
+          <p>To enable this form, open <code>urls/config.js</code> and paste your Google Form URL into <strong>CONTACT_FORM_URL</strong>.</p>
+          <p style="margin-top:8px;">See <a href="README.md">README.md</a> for step-by-step instructions.</p>
+          <a href="https://my.scouting.org/online-registration/4ba44eb1-627e-4a42-97ae-2b34f2e5962e/applicant-type" target="_blank" rel="noopener" class="btn btn-primary">⚜ Register Directly on Scouting.org</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BSA Registration Banner -->
+  <div class="bsa-banner fade-in">
+    <div class="text">
+      <h3>Ready to Register Officially?</h3>
+      <p>Official BSA registration is done on Scouting.org. It only takes a few minutes and gets your scout enrolled in Pack 914!</p>
+    </div>
+    <div class="actions">
+      <a href="https://my.scouting.org/online-registration/4ba44eb1-627e-4a42-97ae-2b34f2e5962e/applicant-type" target="_blank" rel="noopener" class="btn btn-gold">⚜ Register on Scouting.org</a>
+      <a href="https://beascout.scouting.org/" target="_blank" rel="noopener" class="btn btn-secondary">Find Our Pack</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div><h4>⚜ Pack 914 — Livermore</h4><p>Empowering Livermore youth through character, citizenship, and outdoor adventure. Chartered by the Boy Scouts of America — Tri-Valley Council.</p></div>
+    <div><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li><li><a href="about.html">About</a></li><li><a href="calendar.html">Calendar</a></li><li><a href="ranks.html">Ranks</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Join Us</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+    <div><h4>BSA Links</h4><ul><li><a href="https://www.scouting.org/programs/cub-scouts/" target="_blank" rel="noopener">Cub Scouts</a></li><li><a href="https://www.scouting.org/programs/cub-scouts/join/" target="_blank" rel="noopener">Join Scouts</a></li><li><a href="https://www.scoutshop.org/" target="_blank" rel="noopener">Scout Shop</a></li><li><a href="https://beascout.scouting.org/" target="_blank" rel="noopener">BeAScout</a></li></ul></div>
+    <div><h4>Scout Law</h4><p style="font-size:.8rem;color:#94A3B8;line-height:1.9;">A Scout is: Trustworthy · Loyal · Helpful · Friendly · Courteous · Kind · Obedient · Cheerful · Thrifty · Brave · Clean · Reverent</p></div>
+  </div>
+  <div class="footer-bottom"><span>© <span id="current-year"></span> Cub Scout Pack 914 – Livermore, CA</span><span>Made with ❤️ by Pack 914 volunteers</span></div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

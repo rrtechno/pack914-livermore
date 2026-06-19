@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Pack 914 Livermore Event Calendar — Pack meetings, camping trips, Pinewood Derby and more."/>
+  <title>Calendar | Pack 914 Cub Scouts – Livermore</title>
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script src="urls/config.js"></script>
+  <script src="data/events.js"></script>
+  <style>
+    body { padding-top:var(--nav-h); }
+    .cal-wrap { max-width:var(--max-w); margin:0 auto; padding:56px 24px 72px; }
+
+    /* TOP: 5 event cards */
+    .upcoming-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(300px,1fr));
+      gap:16px;
+      margin-bottom:56px;
+    }
+
+    .event-cal-card {
+      background:var(--white); border:1px solid var(--gray-200);
+      border-radius:var(--radius-md); padding:20px;
+      box-shadow:var(--shadow-sm); display:flex; gap:16px;
+      transition:box-shadow .2s, transform .2s;
+    }
+    .event-cal-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+
+    .cal-date-block {
+      background:var(--navy); color:var(--white);
+      border-radius:var(--radius-sm); padding:10px 12px;
+      text-align:center; min-width:56px; flex-shrink:0; align-self:flex-start;
+    }
+    .cal-date-block .cday   { font-size:1.6rem; font-weight:900; line-height:1; }
+    .cal-date-block .cmonth { font-size:.65rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; margin-top:2px; }
+    .cal-date-block .cyear  { font-size:.62rem; color:#94A3B8; margin-top:1px; }
+
+    .cal-info h3  { font-size:.95rem; font-weight:800; color:var(--navy); margin-bottom:5px; }
+    .cal-info .time { font-size:.78rem; color:var(--gray-500); margin-bottom:3px; }
+    .cal-info .loc  { font-size:.78rem; color:var(--gray-500); margin-bottom:8px; }
+    .cal-info .short-desc { font-size:.8rem; color:var(--gray-700); line-height:1.45; }
+
+    /* Calendar embed */
+    .cal-embed-wrap {
+      background:var(--gray-100); border-radius:var(--radius-md);
+      border:1px solid var(--gray-300); overflow:hidden; box-shadow:var(--shadow-sm);
+    }
+    .cal-embed-wrap iframe { width:100%; height:600px; border:none; display:block; }
+
+    .cal-embed-header {
+      background:var(--navy); color:var(--white);
+      padding:16px 24px; display:flex; align-items:center;
+      justify-content:space-between; flex-wrap:wrap; gap:12px;
+    }
+    .cal-embed-header h3 { font-size:1rem; font-weight:800; }
+    .cal-embed-footer {
+      background:var(--white); padding:14px 20px;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:12px; border-top:1px solid var(--gray-300);
+    }
+    .cal-embed-footer p { font-size:.8rem; color:var(--gray-500); }
+
+    /* Placeholder */
+    .cal-placeholder {
+      height:520px; display:flex; flex-direction:column; align-items:center;
+      justify-content:center; gap:16px; padding:40px; text-align:center; color:var(--gray-500);
+    }
+    .cal-placeholder .big { font-size:3.5rem; }
+    .cal-placeholder h3 { font-size:1.1rem; font-weight:800; color:var(--navy); }
+    .cal-placeholder code { background:var(--gray-100); padding:2px 8px; border-radius:4px; font-size:.85rem; }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="announcement" role="alert"></div>
+
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="images/logo.jpg" alt="Pack 914 logo" onerror="this.style.display='none'"><span class="nav-logo-text"><span class="pack">Cub Scouts</span><br><span class="name">Pack 914</span></span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About</a></li><li><a href="calendar.html" class="active">Calendar</a></li>
+      <li><a href="ranks.html">Ranks</a></li><li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="btn-join">Join Us ⚜</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <img src="images/logo.jpg" alt="Logo" class="hero-logo"> 
+  <span class="label">Stay Organised</span>
+  <h1>Pack Event Calendar</h1>
+  <p>All Pack 914 meetings, camping trips, and activities in one place. Subscribe to never miss an event!</p>
+</div>
+
+<main id="main">
+<div class="cal-wrap">
+
+  <!-- TOP: upcoming 5 -->
+  <div class="fade-in">
+    <span class="section-label">What's Coming Up</span>
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="divider"></div>
+    <p class="section-subtitle">The next 5 Pack events at a glance. For full details, visit the <a href="events.html">Events page</a>.</p>
+  </div>
+
+  <div class="upcoming-grid fade-in" style="animation-delay:.08s" id="cal-top-cards">
+    <p style="color:var(--gray-500);">Loading…</p>
+  </div>
+
+  <!-- BOTTOM: Google Calendar embed -->
+  <div class="fade-in">
+    <span class="section-label">Full Calendar</span>
+    <h2 class="section-title">Pack 914 Google Calendar</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="cal-embed-wrap fade-in" style="animation-delay:.08s">
+    <div class="cal-embed-header">
+      <h3>📅 Pack 914 — Live Event Calendar</h3>
+      <a href="#" data-cal-link class="btn btn-gold btn-sm">Open in Google Calendar ↗</a>
+    </div>
+
+    <iframe id="calendar-iframe" src="" style="display:none"
+      title="Pack 914 Google Calendar" loading="lazy" frameborder="0" scrolling="no"></iframe>
+
+    <div id="calendar-placeholder" class="cal-placeholder">
+      <div class="big">📅</div>
+      <h3>Calendar Not Yet Configured</h3>
+      <p>To show the live calendar, open <code>urls/config.js</code> and set <strong>CALENDAR_EMBED_URL</strong> to your Google Calendar embed link.</p>
+      <p style="font-size:.8rem;margin-top:8px;">See <a href="README.md">README.md</a> for step-by-step instructions.</p>
+      <a href="events.html" class="btn btn-primary">View Events List Instead →</a>
+    </div>
+
+    <div class="cal-embed-footer">
+      <p>📌 Events subject to change — subscribe for automatic updates.</p>
+      <a href="#" data-cal-link class="btn btn-secondary btn-sm">➕ Subscribe to Calendar</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div><h4>⚜ Pack 914 — Livermore</h4><p>Empowering Livermore youth through character, citizenship, and outdoor adventure. Chartered by the Boy Scouts of America — Tri-Valley Council.</p></div>
+    <div><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li><li><a href="about.html">About</a></li><li><a href="calendar.html">Calendar</a></li><li><a href="ranks.html">Ranks</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Join Us</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+    <div><h4>BSA Links</h4><ul><li><a href="https://www.scouting.org/programs/cub-scouts/" target="_blank" rel="noopener">Cub Scouts</a></li><li><a href="https://www.scouting.org/programs/cub-scouts/join/" target="_blank" rel="noopener">Join Scouts</a></li><li><a href="https://www.scoutshop.org/" target="_blank" rel="noopener">Scout Shop</a></li></ul></div>
+    <div><h4>Scout Law</h4><p style="font-size:.8rem;color:#94A3B8;line-height:1.9;">A Scout is: Trustworthy · Loyal · Helpful · Friendly · Courteous · Kind · Obedient · Cheerful · Thrifty · Brave · Clean · Reverent</p></div>
+  </div>
+  <div class="footer-bottom"><span>© <span id="current-year"></span> Cub Scout Pack 914 – Livermore, CA</span><span>Made with ❤️ by Pack 914 volunteers</span></div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('cal-top-cards');
+  if (typeof PACK_EVENTS === 'undefined') { container.innerHTML = '<p>Events data not loaded.</p>'; return; }
+  const events = getUpcomingEvents(5);
+  if (!events.length) { container.innerHTML = '<p style="color:var(--gray-500);">No upcoming events found. Add events in <code>data/events.js</code>.</p>'; return; }
+  container.innerHTML = events.map(ev => {
+    const d = new Date(ev.dateISO + 'T12:00:00');
+    const day   = d.toLocaleString('en-US', {day:'2-digit'});
+    const month = d.toLocaleString('en-US', {month:'short'});
+    const year  = d.getFullYear();
+    const tmp = document.createElement('div');
+    tmp.innerHTML = ev.description;
+    const plain = (tmp.textContent||'').replace(/\s+/g,' ').trim().slice(0,100);
+    return `
+      <div class="event-cal-card fade-in">
+        <div class="cal-date-block"><div class="cday">${day}</div><div class="cmonth">${month}</div><div class="cyear">${year}</div></div>
+        <div class="cal-info">
+          <h3>${ev.title}</h3>
+          <div class="time">🕐 ${ev.time}</div>
+          <div class="loc">📍 ${ev.location.split(',')[0]}</div>
+          <div class="short-desc">${plain}…</div>
+          ${(ev.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}
+        </div>
+      </div>`;
+  }).join('');
+  // re-observe fade-ins
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);} });
+  },{threshold:0.05});
+  container.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+});
+</script>
+</body>
+</html>

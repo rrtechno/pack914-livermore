@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Cub Scout Pack 914 – Livermore, CA. Serving Lions through Webelos. Join us for camping, Pinewood Derby, community service and more!"/>
+  <title>Pack 914 | Cub Scouts – Livermore, CA</title>
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script src="urls/config.js"></script>
+  <script src="data/events.js"></script>
+  <style>
+    /* ── Index-only styles ────────────────────────── */
+    body { padding-top: var(--nav-h); }
+
+    /* HERO */
+    #home {
+      background: linear-gradient(155deg,#EFF6FF 0%,#FEF9EC 60%,#fff 100%);
+      padding: 56px 24px 64px;
+    }
+    .hero-wrap { max-width:var(--max-w); margin:0 auto; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 3px 1fr;
+      gap: 0 32px;
+      align-items: start;
+    }
+
+    /* vertical divider */
+    .hero-divider {
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      width: 3px; align-self: stretch; min-height: 420px;
+    }
+
+    /* left side */
+    .hero-left {}
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--gold-lt); color:var(--navy);
+      border:1px solid var(--gold); border-radius:100px;
+      padding:5px 14px; font-size:.76rem; font-weight:800;
+      letter-spacing:.1em; text-transform:uppercase; margin-bottom:20px;
+    }
+    .hero-title { font-family:var(--font-display); font-size:clamp(2rem,4vw,3rem); color:var(--navy); line-height:1.15; margin-bottom:16px; }
+    .hero-title .highlight { color:var(--gold); display:block; }
+    .hero-desc  { font-size:1rem; color:var(--gray-500); margin-bottom:28px; max-width:420px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:36px; }
+    .hero-stats { display:flex; gap:28px; }
+    .stat-num   { font-family:var(--font-display); font-size:1.8rem; font-weight:700; color:var(--navy); line-height:1; }
+    .stat-label { font-size:.72rem; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:.06em; }
+
+    /* right side — upcoming events */
+    .hero-events { display:flex; flex-direction:column; gap:10px; }
+    .hero-events-header {
+      font-size:.7rem; font-weight:800; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:4px;
+    }
+    .hero-events .event-mini { padding:12px 14px; }
+    .hero-events .event-mini-date { padding:6px 8px; min-width:44px; }
+    .hero-events .event-mini-date .day { font-size:1.15rem; }
+    .hero-events-footer { margin-top:6px; }
+
+    /* ABOUT STRIP */
+    #about-strip { padding:56px 24px; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+    .about-img { border-radius:var(--radius-md); box-shadow:var(--shadow-md); width:100%; aspect-ratio:4/3; object-fit:cover; }
+    .fact-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px; }
+    .fact-card { background:var(--gray-100); border-radius:var(--radius-sm); padding:14px; }
+    .fact-card .icon { font-size:1.4rem; margin-bottom:5px; }
+    .fact-card h4 { font-size:.82rem; font-weight:800; color:var(--navy); margin-bottom:2px; }
+    .fact-card p  { font-size:.78rem; color:var(--gray-500); }
+
+    /* RANKS STRIP */
+    #ranks-strip { padding:56px 24px; }
+    .ranks-row { display:flex; gap:12px; justify-content:space-between; flex-wrap:wrap; margin-bottom:32px; }
+    .rank-pill {
+      flex:1; min-width:130px;
+      background:var(--white); border:2px solid var(--gray-200);
+      border-radius:var(--radius-md); padding:18px 12px;
+      text-align:center; transition:border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .rank-pill:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:var(--shadow-md); }
+    .rank-pill .emoji { font-size:2rem; margin-bottom:6px; }
+    .rank-pill .rname { font-size:.85rem; font-weight:800; color:var(--navy); }
+    .rank-pill .rgrade{ font-size:.72rem; color:var(--gray-500); margin-top:2px; }
+
+    /* RESOURCES STRIP */
+    #resources-strip { padding:48px 24px; }
+    .res-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
+    .res-card {
+      background:var(--white); border:1px solid var(--gray-200);
+      border-radius:var(--radius-md); padding:18px 16px;
+      display:flex; gap:12px; align-items:flex-start;
+      transition:box-shadow .2s, transform .2s; text-decoration:none;
+    }
+    .res-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); text-decoration:none; }
+    .res-card .icon { font-size:1.5rem; flex-shrink:0; }
+    .res-card h4 { font-size:.88rem; font-weight:800; color:var(--navy); margin-bottom:2px; }
+    .res-card p  { font-size:.76rem; color:var(--gray-500); }
+
+    /* JOIN CTA */
+    #join-cta { background:var(--navy); padding:72px 24px; text-align:center; }
+    .join-inner { max-width:640px; margin:0 auto; }
+    .join-inner .section-title { color:var(--white); }
+    .join-inner p { color:#94A3B8; font-size:1rem; margin-bottom:28px; }
+    .steps-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:40px; text-align:left; }
+    .step-card { background:#1E3A6E; border-radius:var(--radius-md); padding:18px; }
+    .step-card .num { font-size:1.5rem; margin-bottom:6px; }
+    .step-card h4 { color:var(--white); font-size:.85rem; font-weight:800; margin-bottom:4px; }
+    .step-card p  { color:#94A3B8; font-size:.78rem; }
+
+    /* Responsive */
+    @media(max-width:860px) {
+      .hero-grid { grid-template-columns:1fr; }
+      .hero-divider { display:none; }
+      .about-grid { grid-template-columns:1fr; }
+      .steps-row { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:540px) {
+      .steps-row { grid-template-columns:1fr; }
+      .ranks-row .rank-pill { min-width:90px; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="announcement" role="alert"></div>
+
+<!-- NAV -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Pack 914 Home">
+      <img src="images/logo.jpg" alt="Pack 914 logo" onerror="this.style.display='none'">
+      <span class="nav-logo-text"><span class="pack">Cub Scouts</span><span class="name">Pack 914</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="ranks.html">Ranks</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="btn-join">Join Us ⚜</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ════════════════════ HERO ════════════════════ -->
+  <section id="home" aria-label="Welcome">
+    <div class="hero-wrap">
+      <div class="hero-grid">
+
+        <!-- LEFT: Pack intro -->
+        <div class="hero-left fade-in">
+          <div class="hero-badge">⚜ Livermore, California</div>
+          <h1 class="hero-title">Adventure Starts Here<span class="highlight">Cub Scout Pack 914</span></h1>
+          <p class="hero-desc">Empowering Livermore youth from Kindergarten through 5th grade with character, citizenship, and outdoor adventure.</p>
+          <div class="hero-actions">
+            <a href="contact.html" class="btn btn-primary">Join Pack 914 ⚜</a>
+            <a href="events.html"  class="btn btn-secondary">Upcoming Events</a>
+          </div>
+          <div class="hero-stats">
+            <div><div class="stat-num">914</div><div class="stat-label">Pack No.</div></div>
+            <div><div class="stat-num">K–5</div><div class="stat-label">Grades</div></div>
+            <div><div class="stat-num">BSA</div><div class="stat-label">Certified</div></div>
+          </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="hero-divider" aria-hidden="true"></div>
+
+        <!-- RIGHT: Upcoming events -->
+        <div class="hero-right fade-in" style="animation-delay:.1s">
+          <div class="hero-events">
+            <div class="hero-events-header">📅 Upcoming Events</div>
+            <div id="home-event-cards">
+              <!-- Rendered by JS from data/events.js -->
+              <div style="color:var(--gray-500);font-size:.85rem;padding:12px 0;">Loading events…</div>
+            </div>
+            <div class="hero-events-footer">
+              <a href="events.html" class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;">View All Events →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ ABOUT STRIP ════════════════════ -->
+  <section id="about-strip" class="section--alt">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="fade-in">
+          <img class="about-img" src="images/scouting/meeting.jpg" alt="Pack 914 meeting"
+               onerror="this.src='https://placehold.co/540x400/1B3A6B/FFF?text=Pack+Meeting'"/>
+        </div>
+        <div class="fade-in" style="animation-delay:.1s">
+          <span class="section-label">Who We Are</span>
+          <h2 class="section-title">Building Tomorrow's Leaders</h2>
+          <div class="divider"></div>
+          <p style="color:var(--gray-700);margin-bottom:14px;">Pack 914 is a proud BSA Cub Scout unit chartered in <strong>Livermore, California</strong>. We welcome boys and girls in Kindergarten through 5th grade into a family-friendly program filled with fun, learning, and community service.</p>
+          <p style="color:var(--gray-700);margin-bottom:20px;">From the Pinewood Derby to overnight camping, our Pack creates lifelong memories and friendships guided by the Scout Oath and Law.</p>
+          <a href="about.html" class="btn btn-primary btn-sm">Learn More About Us →</a>
+          <div class="fact-grid">
+            <div class="fact-card"><div class="icon">📍</div><h4>Location</h4><p>Livermore, CA — Tri-Valley Council</p></div>
+            <div class="fact-card"><div class="icon">📅</div><h4>Meetings</h4><p>Monthly Pack + den meetings</p></div>
+            <div class="fact-card"><div class="icon">⚜</div><h4>Chartered</h4><p>Boy Scouts of America</p></div>
+            <div class="fact-card"><div class="icon">👨‍👩‍👧‍👦</div><h4>Family-Led</h4><p>Volunteer parent leaders</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ RANKS STRIP ════════════════════ -->
+  <section id="ranks-strip">
+    <div class="section-inner">
+      <div class="fade-in">
+        <span class="section-label">Program</span>
+        <h2 class="section-title">Rank Progression</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="ranks-row fade-in" style="animation-delay:.08s">
+        <a href="ranks.html#lion"    class="rank-pill"><div class="emoji">🦁</div><div class="rname">Lion</div><div class="rgrade">Kindergarten</div></a>
+        <a href="ranks.html#tiger"   class="rank-pill"><div class="emoji">🐯</div><div class="rname">Tiger</div><div class="rgrade">1st Grade</div></a>
+        <a href="ranks.html#wolf"    class="rank-pill"><div class="emoji">🐺</div><div class="rname">Wolf</div><div class="rgrade">2nd Grade</div></a>
+        <a href="ranks.html#bear"    class="rank-pill"><div class="emoji">🐻</div><div class="rname">Bear</div><div class="rgrade">3rd Grade</div></a>
+        <a href="ranks.html#webelos" class="rank-pill"><div class="emoji">🏹</div><div class="rname">Webelos</div><div class="rgrade">4th Grade</div></a>
+        <a href="ranks.html#aol"     class="rank-pill"><div class="emoji">⚜️</div><div class="rname">Arrow of Light</div><div class="rgrade">5th Grade</div></a>
+      </div>
+      <div style="text-align:center;" class="fade-in"><a href="ranks.html" class="btn btn-secondary">Explore All Ranks →</a></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ RESOURCES STRIP ════════════════════ -->
+  <section id="resources-strip" class="section--alt">
+    <div class="section-inner">
+      <div class="fade-in">
+        <span class="section-label">Quick Links</span>
+        <h2 class="section-title">Resources</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="res-grid fade-in" style="animation-delay:.08s">
+        <a class="res-card" href="https://www.scouting.org/programs/cub-scouts/join/" target="_blank" rel="noopener">
+          <span class="icon">⚜</span><div><h4>Join Scouts</h4><p>Register your scout today on Scouting.org</p></div>
+        </a>
+        <a class="res-card" href="https://www.scouting.org/about/annual-health-medical-record/" target="_blank" rel="noopener">
+          <span class="icon">🏥</span><div><h4>Health Forms</h4><p>Annual Health & Medical Record (BSA)</p></div>
+        </a>
+        <a class="res-card" href="https://www.scoutshop.org/" target="_blank" rel="noopener">
+          <span class="icon">🛍️</span><div><h4>Scout Shop</h4><p>Uniforms, handbooks, and merit badge supplies</p></div>
+        </a>
+        <a class="res-card" href="https://beascout.scouting.org/" target="_blank" rel="noopener">
+          <span class="icon">🔍</span><div><h4>BeAScout</h4><p>Find a pack or unit near you</p></div>
+        </a>
+        <a class="res-card" href="calendar.html" data-cal-link>
+          <span class="icon">📅</span><div><h4>Pack Calendar</h4><p>Stay up-to-date on all Pack 914 events</p></div>
+        </a>
+        <a class="res-card" href="resources.html">
+          <span class="icon">📚</span><div><h4>Scout Resources</h4><p>Handbooks, forms, badge guides & more</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ JOIN CTA ════════════════════ -->
+  <section id="join-cta" aria-label="Join Pack 914">
+    <div class="join-inner">
+      <span class="section-label">Ready to Scout?</span>
+      <h2 class="section-title">Join Pack 914 Today</h2>
+      <p>Registration is open for boys and girls in Kindergarten through 5th grade. No experience needed — just a sense of adventure!</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;" class="fade-in">
+        <a href="https://www.scouting.org/programs/cub-scouts/join/" target="_blank" rel="noopener" class="btn btn-gold">⚜ Register on Scouting.org</a>
+        <a href="contact.html" class="btn btn-secondary">Contact Us First</a>
+      </div>
+      <div class="steps-row fade-in" style="animation-delay:.1s">
+        <div class="step-card"><div class="num">1️⃣</div><h4>Register</h4><p>Sign up online at Scouting.org or contact us.</p></div>
+        <div class="step-card"><div class="num">2️⃣</div><h4>Attend</h4><p>Come to a Pack meeting and meet the scouts.</p></div>
+        <div class="step-card"><div class="num">3️⃣</div><h4>Uniform</h4><p>Pick up your uniform and handbook.</p></div>
+        <div class="step-card"><div class="num">4️⃣</div><h4>Earn</h4><p>Start earning badges and rank advancements!</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div><h4>⚜ Pack 914 — Livermore</h4><p>Empowering Livermore youth through character, citizenship, and outdoor adventure. Chartered by the Boy Scouts of America — Tri-Valley Council.</p></div>
+    <div><h4>Pages</h4><ul>
+      <li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About</a></li><li><a href="calendar.html">Calendar</a></li>
+      <li><a href="ranks.html">Ranks</a></li><li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Join Us</a></li><li><a href="resources.html">Resources</a></li>
+    </ul></div>
+    <div><h4>BSA Links</h4><ul>
+      <li><a href="https://www.scouting.org/programs/cub-scouts/" target="_blank" rel="noopener">Cub Scouts</a></li>
+      <li><a href="https://www.scouting.org/programs/cub-scouts/join/" target="_blank" rel="noopener">Join Scouts</a></li>
+      <li><a href="https://www.scouting.org/about/annual-health-medical-record/" target="_blank" rel="noopener">Health Forms</a></li>
+      <li><a href="https://www.scoutshop.org/" target="_blank" rel="noopener">Scout Shop</a></li>
+      <li><a href="https://beascout.scouting.org/" target="_blank" rel="noopener">BeAScout</a></li>
+    </ul></div>
+    <div><h4>Scout Oath</h4><p style="font-style:italic;font-size:.8rem;color:#94A3B8;line-height:1.8;">"On my honor I will do my best to do my duty to God and my country and to obey the Scout Law; to help other people at all times; to keep myself physically strong, mentally awake, and morally straight."</p></div>
+  </div>
+  <div class="footer-bottom"><span>© <span id="current-year"></span> Cub Scout Pack 914 – Livermore, CA</span><span>Made with ❤️ by Pack 914 volunteers</span></div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  // Render upcoming event mini cards on homepage
+  document.addEventListener('DOMContentLoaded', () => {
+    renderUpcomingMiniCards('home-event-cards', 5);
+    // Re-run fade observer for dynamically added cards
+    setTimeout(() => {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+      }, { threshold:0.05 });
+      document.querySelectorAll('#home-event-cards .fade-in').forEach(el => { el.classList.remove('visible'); io.observe(el); });
+    }, 50);
+  });
+</script>
+
+</body>
+</html>

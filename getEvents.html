@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Google Sheet Table</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+    <h2>Data From Google Sheets</h2>
+    <div id="table-container">Loading data...</div>
+
+    <script>
+        // REPLACE WITH YOUR ACTUAL GOOGLE SHEET ID
+        const sheetId = '14VuOlhdmRekXIDpm0LQtJbyae4bh4xHQvuzloSNLWNQ'; 
+        //const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv`;
+        const csvUrl = 'https://docs.google.com/spreadsheets/d/14VuOlhdmRekXIDpm0LQtJbyae4bh4xHQvuzloSNLWNQ/gviz/tq?tqx=out:csv';
+
+        // Helper function to handle basic CSV parsing logic
+        function parseCSV(text) {
+            let lines = text.split('\n');
+            return lines.map(line => {
+                // Regex handles commas safely inside quotes
+                return line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(cell => 
+                    cell.replace(/^"|"$/g, '').trim()
+                );
+            });
+        }
+
+        async function fetchAndDisplayTable() {
+            try {
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+
+                if (data.length === 0 || data[0].length === 0) {
+                    document.getElementById('table-container').innerText = `No data found for URL: ${csvUrl}`;
+                    return;
+                }
+
+                let html = '<table><thead><tr>';
+                
+                // Build the table header row
+                data[0].forEach(header => {
+                    html += `<th>${header}</th>`;
+                });
+                html += '</tr></thead><tbody>';
+
+                // Build the data rows
+                for (let i = 1; i < data.length; i++) {
+                    if (data[i].join('').trim() === '') continue; // Skip empty rows
+                    html += '<tr>';
+                    data[i].forEach(cell => {
+                        html += `<td>${cell}</td>`;
+                    });
+                    html += '</tr>';
+                }
+                html += '</tbody></table>';
+
+                document.getElementById('table-container').innerHTML = html;
+            } catch (error) {
+                console.error('Error fetching sheet data:', error);
+                document.getElementById('table-container').innerText = `Failed to load data : ${response.status} ${response.statusText} for URL: ${csvUrl}`;
+            }
+        }
+
+        // Run the script on page load
+        fetchAndDisplayTable();
+    </script>
+</body>
+</html>

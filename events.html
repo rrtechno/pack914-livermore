@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Pack 914 Livermore Cub Scout Events – Camping, Pinewood Derby, Pack Meetings and more."/>
+  <title>Events | Pack 914 Cub Scouts – Livermore</title>
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <script src="urls/config.js"></script>
+  <script src="data/events.js"></script>
+  <style>
+    body { padding-top: var(--nav-h); }
+
+    .events-layout {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 56px 24px 72px;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* Filter bar */
+    .filter-bar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+    .filter-btn {
+      padding:6px 14px; border-radius:100px; border:2px solid var(--gray-300);
+      background:var(--white); color:var(--gray-700); font-size:.8rem; font-weight:700;
+      cursor:pointer; transition:all .15s;
+    }
+    .filter-btn:hover, .filter-btn.active { border-color:var(--navy); background:var(--navy); color:var(--white); }
+
+    /* Event post card */
+    .event-post {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .event-post:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+    .event-post-img {
+      width: 100%; height: 220px; object-fit: cover;
+      background: var(--gray-100);
+    }
+    .event-post-img-placeholder {
+      width:100%; height:220px;
+      background: linear-gradient(135deg, var(--navy) 0%, #2B5BB5 100%);
+      display:flex; align-items:center; justify-content:center;
+      font-size:4rem;
+    }
+
+    .event-post-body { padding: 24px 28px 28px; }
+
+    .event-post-meta {
+      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .event-post-meta .date-badge {
+      display:flex; align-items:center; gap:6px;
+      background:var(--navy); color:var(--white);
+      padding:4px 12px; border-radius:100px; font-size:.78rem; font-weight:800;
+    }
+    .event-post-meta .time-badge {
+      font-size:.8rem; color:var(--gray-500); font-weight:600;
+    }
+    .event-post-meta .loc-badge {
+      font-size:.8rem; color:var(--gray-500); font-weight:600;
+    }
+
+    .event-post-body h2 {
+      font-family:var(--font-display); font-size:1.4rem; color:var(--navy);
+      margin-bottom:12px; line-height:1.25;
+    }
+    .event-post-body .tags { margin-bottom:14px; }
+    .event-post-desc { color:var(--gray-700); font-size:.92rem; line-height:1.7; }
+    .event-post-desc ul { margin:10px 0 10px 20px; list-style:disc; }
+    .event-post-desc li { margin-bottom:4px; }
+    .event-post-desc p  { margin-bottom:10px; }
+
+    /* Sidebar */
+    .events-sidebar { position: sticky; top: calc(var(--nav-h) + 20px); }
+    .sidebar-card {
+      background:var(--white); border:1px solid var(--gray-200);
+      border-radius:var(--radius-md); padding:20px; margin-bottom:20px;
+    }
+    .sidebar-card h3 { font-size:.88rem; font-weight:800; color:var(--navy); margin-bottom:14px; border-bottom:2px solid var(--gold); padding-bottom:8px; }
+    .sidebar-card ul li { font-size:.82rem; color:var(--gray-700); padding:6px 0; border-bottom:1px solid var(--gray-100); }
+    .sidebar-card ul li:last-child { border-bottom:none; }
+    .sidebar-card ul li a { color:var(--navy); font-weight:600; }
+
+    @media(max-width:800px) {
+      .events-layout { grid-template-columns:1fr; }
+      .events-sidebar { position:static; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="announcement" role="alert"></div>
+
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="images/logo.jpg" alt="Pack 914 logo" onerror="this.style.display='none'"><span class="nav-logo-text"><span class="pack">Cub Scouts</span><BR><span class="name">Pack 914</span></span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="events.html" class="active">Events</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="calendar.html">Calendar</a></li>
+      <li><a href="ranks.html">Ranks</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="btn-join">Join Us ⚜</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <span class="label">Pack 914 Activities</span>
+  <h1>Events</h1>
+  <p>Camping trips, Pinewood Derby, pack meetings, community service and more — all the adventures of Pack 914.</p>
+</div>
+
+<main id="main">
+  <div class="events-layout">
+
+    <!-- MAIN FEED -->
+    <div>
+      <!-- Filter tags -->
+      <div class="filter-bar" id="filter-bar" role="group" aria-label="Filter events by type">
+        <button class="filter-btn active" data-filter="all">All Events</button>
+        <button class="filter-btn" data-filter="Camping">⛺ Camping</button>
+        <button class="filter-btn" data-filter="Pinewood">🏎️ Pinewood</button>
+        <button class="filter-btn" data-filter="Pack Meeting">📋 Meetings</button>
+        <button class="filter-btn" data-filter="Awards">🏅 Awards</button>
+        <button class="filter-btn" data-filter="Family">👨‍👩‍👧 Family</button>
+      </div>
+
+      <div id="events-feed">
+        <!-- Rendered by JS -->
+        <p style="color:var(--gray-500);">Loading events…</p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="events-sidebar">
+      <div class="sidebar-card">
+        <h3>📅 View Full Calendar</h3>
+        <p style="font-size:.82rem;color:var(--gray-500);margin-bottom:12px;">See all Pack 914 events on our Google Calendar and subscribe for automatic updates.</p>
+        <a href="calendar.html" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">Open Calendar →</a>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>🗂️ Event Tags</h3>
+        <ul id="sidebar-tags"></ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>⚜ Quick Links</h3>
+        <ul>
+          <li><a href="contact.html">Join Pack 914</a></li>
+          <li><a href="ranks.html">Rank Progression</a></li>
+          <li><a href="gallery.html">Photo Gallery</a></li>
+          <li><a href="resources.html">Scout Resources</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div><h4>⚜ Pack 914 — Livermore</h4><p>Empowering Livermore youth through character, citizenship, and outdoor adventure. Chartered by the Boy Scouts of America — Tri-Valley Council.</p></div>
+    <div><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li><li><a href="about.html">About</a></li><li><a href="calendar.html">Calendar</a></li><li><a href="ranks.html">Ranks</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Join Us</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+    <div><h4>BSA Links</h4><ul><li><a href="https://www.scouting.org/programs/cub-scouts/" target="_blank" rel="noopener">Cub Scouts</a></li><li><a href="https://www.scouting.org/programs/cub-scouts/join/" target="_blank" rel="noopener">Join Scouts</a></li><li><a href="https://www.scoutshop.org/" target="_blank" rel="noopener">Scout Shop</a></li><li><a href="https://beascout.scouting.org/" target="_blank" rel="noopener">BeAScout</a></li></ul></div>
+    <div><h4>Scout Law</h4><p style="font-size:.8rem;color:#94A3B8;line-height:1.9;">A Scout is: Trustworthy · Loyal · Helpful · Friendly · Courteous · Kind · Obedient · Cheerful · Thrifty · Brave · Clean · Reverent</p></div>
+  </div>
+  <div class="footer-bottom"><span>© <span id="current-year"></span> Cub Scout Pack 914 – Livermore, CA</span><span>Made with ❤️ by Pack 914 volunteers</span></div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+const EMOJI_MAP = { Camping:'⛺', Pinewood:'🏎️', 'Pack Meeting':'📋', Awards:'🏅', Family:'👨‍👩‍👧', Service:'🤝', Summer:'☀️', Holiday:'🎄', Outdoor:'🥾', 'All Ranks':'⚜' };
+
+function renderEvents(filter = 'all') {
+  const feed = document.getElementById('events-feed');
+  const events = getAllEvents();
+  const filtered = filter === 'all' ? events : events.filter(e => e.tags && e.tags.includes(filter));
+
+  if (!filtered.length) {
+    feed.innerHTML = '<p style="color:var(--gray-500);padding:20px 0;">No events found for this filter.</p>';
+    return;
+  }
+
+  feed.innerHTML = filtered.map(ev => {
+    const hasImg = ev.image && ev.image.length;
+    const imgHtml = hasImg
+      ? `<img class="event-post-img" src="images/${ev.image}" alt="${ev.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=event-post-img-placeholder>⛺</div>'">`
+      : `<div class="event-post-img-placeholder">${ev.tags && ev.tags[0] ? (EMOJI_MAP[ev.tags[0]]||'⚜') : '⚜'}</div>`;
+
+    const tagsHtml = (ev.tags||[]).map(t => `<span class="tag">${EMOJI_MAP[t]||''} ${t}</span>`).join('');
+
+    return `
+      <article class="event-post fade-in" data-tags='${JSON.stringify(ev.tags||[])}'>
+        ${imgHtml}
+        <div class="event-post-body">
+          <div class="event-post-meta">
+            <span class="date-badge">📅 ${ev.date}</span>
+            <span class="time-badge">🕐 ${ev.time}</span>
+            <span class="loc-badge">📍 ${ev.location}</span>
+          </div>
+          <h2>${ev.title}</h2>
+          <div class="tags">${tagsHtml}</div>
+          <div class="event-post-desc">${ev.description}</div>
+        </div>
+      </article>`;
+  }).join('');
+
+  // re-trigger fade-in observer
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
+  }, { threshold:0.05 });
+  feed.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+}
+
+// Build sidebar tag list
+function buildSidebarTags() {
+  const all = PACK_EVENTS.flatMap(e => e.tags||[]);
+  const counts = {};
+  all.forEach(t => counts[t] = (counts[t]||0)+1);
+  const ul = document.getElementById('sidebar-tags');
+  ul.innerHTML = Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([tag,cnt]) =>
+    `<li><a href="#" data-tag="${tag}" onclick="setFilter('${tag}');return false;">${EMOJI_MAP[tag]||'⚜'} ${tag} <span style="color:var(--gray-500);">(${cnt})</span></a></li>`
+  ).join('');
+}
+
+function setFilter(tag) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === tag));
+  renderEvents(tag);
+  window.scrollTo({ top: document.getElementById('events-feed').offsetTop - 100, behavior:'smooth' });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderEvents('all');
+  buildSidebarTags();
+
+  document.getElementById('filter-bar').addEventListener('click', e => {
+    if (e.target.classList.contains('filter-btn')) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      renderEvents(e.target.dataset.filter);
+    }
+  });
+});
+</script>
+
+</body>
+</html>

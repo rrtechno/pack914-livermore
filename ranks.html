@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Cub Scout Rank Progression — Pack 914 Livermore. Lion, Tiger, Wolf, Bear, Webelos, Arrow of Light."/>
+  <title>Ranks | Pack 914 Cub Scouts – Livermore</title>
+  <link rel="icon" href="images/logo.jpg" type="image/jpeg"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <style>
+    body { padding-top:var(--nav-h); }
+    .ranks-wrap { max-width:var(--max-w); margin:0 auto; padding:64px 24px 80px; }
+
+    /* ── Progression timeline ── */
+    .progression {
+      position: relative;
+      padding-left: 0;
+      margin-bottom: 72px;
+    }
+
+    /* vertical line on desktop */
+    @media(min-width:720px){
+      .progression::before {
+        content:'';
+        position:absolute;
+        left:50%;
+        top:0; bottom:0;
+        width:4px;
+        background:linear-gradient(to bottom, var(--gold-lt), var(--gold), var(--gold-lt));
+        border-radius:4px;
+        transform:translateX(-50%);
+      }
+    }
+
+    .rank-block {
+      display:grid;
+      grid-template-columns:1fr 80px 1fr;
+      gap:0 24px;
+      align-items:center;
+      margin-bottom:48px;
+      position:relative;
+    }
+    /* every other row flips */
+    .rank-block:nth-child(even) .rank-content { order:-1; text-align:right; }
+    .rank-block:nth-child(even) .rank-spacer  { order:0; }
+    .rank-block:nth-child(even) .rank-visual  { order:1; }
+
+    .rank-badge {
+      width:80px; height:80px;
+      background:var(--navy);
+      border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:2.4rem;
+      box-shadow:0 0 0 6px var(--gold-lt), 0 0 0 8px var(--gold);
+      z-index:1; position:relative; margin:0 auto;
+    }
+
+    .rank-content { padding:8px 0; }
+    .rank-content .grade-tag {
+      display:inline-block;
+      background:var(--gold-lt); color:var(--navy);
+      border:1px solid var(--gold); border-radius:100px;
+      padding:3px 12px; font-size:.7rem; font-weight:800;
+      letter-spacing:.1em; text-transform:uppercase; margin-bottom:10px;
+    }
+    .rank-content h2 {
+      font-family:var(--font-display); font-size:1.6rem; color:var(--navy);
+      margin-bottom:10px; line-height:1.2;
+    }
+    .rank-content p  { font-size:.9rem; color:var(--gray-700); line-height:1.65; margin-bottom:14px; }
+    .rank-content ul { font-size:.85rem; color:var(--gray-700); line-height:1.8; padding-left:18px; list-style:disc; margin-bottom:14px; }
+    .rank-content .bsa-link {
+      display:inline-flex; align-items:center; gap:6px;
+      background:var(--navy); color:var(--white);
+      padding:8px 16px; border-radius:var(--radius-sm);
+      font-size:.82rem; font-weight:700; transition:background .15s;
+    }
+    .rank-content .bsa-link:hover { background:#142d56; text-decoration:none; }
+
+    /* Right side image/accent */
+    .rank-visual {
+      background:var(--gray-100); border-radius:var(--radius-md);
+      padding:20px; text-align:center; min-height:140px;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    }
+    .rank-visual .big-emoji { font-size:3.5rem; }
+    .rank-visual p { font-size:.78rem; color:var(--gray-500); font-weight:600; }
+
+    /* color accents per rank */
+    .rank-lion    .rank-badge { background:#B45309; }
+    .rank-tiger   .rank-badge { background:#D97706; }
+    .rank-wolf    .rank-badge { background:#6D28D9; }
+    .rank-bear    .rank-badge { background:#064E3B; }
+    .rank-webelos .rank-badge { background:#1B3A6B; }
+    .rank-aol     .rank-badge { background:#0F2144; box-shadow:0 0 0 6px #FEF3C7,0 0 0 8px #F59E0B,0 0 0 12px #FDE68A; }
+
+    /* progression arrow between ranks */
+    .rank-arrow { text-align:center; font-size:1.8rem; color:var(--gold); margin:-24px 0; position:relative; z-index:2; }
+
+    /* Mobile: stack vertically */
+    @media(max-width:720px){
+      .rank-block { grid-template-columns:64px 1fr; gap:0 16px; }
+      .rank-badge { width:56px; height:56px; font-size:1.6rem; }
+      .rank-block:nth-child(even) .rank-content { order:1; text-align:left; }
+      .rank-block:nth-child(even) .rank-spacer  { order:0; }
+      .rank-block:nth-child(even) .rank-visual  { display:none; }
+      .rank-visual { display:none; }
+      .rank-block .rank-spacer { display:none; }
+      .rank-block { grid-template-columns:56px 1fr; }
+      .progression::before { left:28px; }
+      .rank-arrow { display:none; }
+    }
+
+    /* intro grid */
+    .intro-strip {
+      background:var(--off-white); border-radius:var(--radius-lg);
+      padding:36px 40px; margin-bottom:60px;
+      display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px;
+    }
+    .intro-stat { text-align:center; }
+    .intro-stat .num { font-family:var(--font-display); font-size:2.2rem; color:var(--navy); font-weight:700; }
+    .intro-stat .lbl { font-size:.78rem; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:.08em; }
+
+    @media(max-width:600px){ .intro-strip { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="announcement" role="alert"></div>
+
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="images/logo.jpg" alt="Pack 914 logo" onerror="this.style.display='none'"><span class="nav-logo-text"><span class="pack">Cub Scouts</span><span class="name">Pack 914</span></span></a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About</a></li><li><a href="calendar.html">Calendar</a></li>
+      <li><a href="ranks.html" class="active">Ranks</a></li><li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="btn-join">Join Us ⚜</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <img src="images/rank1.png" alt="Logo" class="hero-logo"> 
+  <span class="label">Cub Scout Program</span>
+  <h1>Rank Progression</h1>
+  <p>From Kindergarten Lion to 5th Grade Arrow of Light — every step of the Cub Scout journey.</p>
+</div>
+
+<main id="main">
+<div class="ranks-wrap">
+
+  <!-- Stats strip -->
+  <div class="intro-strip fade-in">
+    <div class="intro-stat"><div class="num">6</div><div class="lbl">Ranks</div></div>
+    <div class="intro-stat"><div class="num">K–5</div><div class="lbl">Grades Served</div></div>
+    <div class="intro-stat"><div class="num">⚜</div><div class="lbl">BSA Certified</div></div>
+  </div>
+
+  <div class="fade-in">
+    <span class="section-label">The Journey</span>
+    <h2 class="section-title">From Lion to Arrow of Light</h2>
+    <div class="divider"></div>
+    <p class="section-subtitle">Each rank is designed specifically for that grade level — adventures, badge work, and skills grow as scouts do. Click any rank to learn more on the official BSA website.</p>
+  </div>
+
+  <!-- ══════════ PROGRESSION TIMELINE ══════════ -->
+  <div class="progression">
+
+    <!-- LION -->
+    <div class="rank-block rank-lion fade-in" id="lion">
+      <div class="rank-content">
+        <span class="grade-tag">Kindergarten · Age 5–6</span>
+        <h2>🦁 Lion</h2>
+        <p>The Lion rank welcomes Kindergartners into Scouting with simple, hands-on adventures that introduce core values of respect, responsibility, and outdoor fun — always with a parent or guardian partner.</p>
+        <ul>
+          <li>Meet your den and make new friends</li>
+          <li>Explore nature and the outdoors</li>
+          <li>Learn about community helpers</li>
+          <li>Complete fun family adventures</li>
+        </ul>
+        <a class="bsa-link" href="https://www.scouting.org/programs/cub-scouts/adventures/lion/" target="_blank" rel="noopener">View Lion Adventures on Scouting.org ↗</a>
+      </div>
+      <div class="rank-spacer"><div class="rank-badge">🦁</div></div>
+      <div class="rank-visual">
+        <div class="big-emoji">
+          <img src="images/scouting/Lion.jpg" alt="Lion Scout" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%;">
+        </div>
+        <p>Kindergarten</p><p style="font-size:.72rem;">Parent partner program</p>
+      </div>
+    </div>
+
+    <div class="rank-arrow">↓</div>
+
+    <!-- TIGER -->
+    <div class="rank-block rank-tiger fade-in" id="tiger">
+      <div class="rank-visual"><div class="big-emoji"><img src="images/scouting/Tiger.jpg" alt="Tiger Scout" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%;"></div><p>1st Grade</p><p style="font-size:.72rem;">Go see it adventures</p></div>
+      <div class="rank-spacer"><div class="rank-badge">🐯</div></div>
+      <div class="rank-content">
+        <span class="grade-tag">1st Grade · Age 6–7</span>
+        <h2>🐯 Tiger</h2>
+        <p>Tigers "Go See It" — exploring their community, meeting local heroes, and learning about the world around them. Each adventure is shared with a family partner making memories together.</p>
+        <ul>
+          <li>Community field trip adventures</li>
+          <li>Basic outdoor skills introduction</li>
+          <li>Team games and activities</li>
+          <li>Citizenship and helping others</li>
+        </ul>
+        <a class="bsa-link" href="https://www.scouting.org/programs/cub-scouts/adventures/tiger/" target="_blank" rel="noopener">View Tiger Adventures on Scouting.org ↗</a>
+      </div>
+    </div>
+
+    <div class="rank-arrow">↓</div>
+
+    <!-- WOLF -->
+    <div class="rank-block rank-wolf fade-in" id="wolf">
+      <div class="rank-content">
+        <span class="grade-tag">2nd Grade · Age 7–8</span>
+        <h2>🐺 Wolf</h2>
+        <p>Wolf Scouts build independence and begin taking on greater responsibility. They explore topics from first aid to citizenship to STEM — all through engaging, age-appropriate adventures.</p>
+        <ul>
+          <li>Introduction to first aid basics</li>
+          <li>STEM and science adventures</li>
+          <li>Fitness and healthy habits</li>
+          <li>Citizenship projects in Livermore</li>
+        </ul>
+        <a class="bsa-link" href="https://www.scouting.org/programs/cub-scouts/adventures/wolf/" target="_blank" rel="noopener">View Wolf Adventures on Scouting.org ↗</a>
+      </div>
+      <div class="rank-spacer"><div class="rank-badge">🐺</div></div>
+      <div class="rank-visual"><div class="big-emoji"><img src="images/scouting/Wolf.jpg" alt="Wolf Scout" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%;"></div><p>2nd Grade</p><p style="font-size:.72rem;">Growing independence</p></div>
+    </div>
+
+    <div class="rank-arrow">↓</div>
+
+    <!-- BEAR -->
+    <div class="rank-block rank-bear fade-in" id="bear">
+      <div class="rank-visual"><div class="big-emoji"><img src="images/scouting/Bear.jpg" alt="Bear Scout" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%;"></div><p>3rd Grade</p><p style="font-size:.72rem;">Outdoor skills & leadership</p></div>
+      <div class="rank-spacer"><div class="rank-badge">🐻</div></div>
+      <div class="rank-content">
+        <span class="grade-tag">3rd Grade · Age 8–9</span>
+        <h2>🐻 Bear</h2>
+        <p>Bear Scouts dig deeper — taking on bigger challenges in outdoor skills, leadership, and community engagement. They begin leading within their dens and taking on more complex adventure projects.</p>
+        <ul>
+          <li>Camping and outdoor cooking skills</li>
+          <li>American heritage and citizenship</li>
+          <li>Entrepreneurship and money basics</li>
+          <li>Sports and physical fitness</li>
+        </ul>
+        <a class="bsa-link" href="https://www.scouting.org/programs/cub-scouts/adventures/bear/" target="_blank" rel="noopener">View Bear Adventures on Scouting.org ↗</a>
+      </div>
+    </div>
+
+    <div class="rank-arrow">↓</div>
+
+    <!-- WEBELOS -->
+    <div class="rank-block rank-webelos fade-in" id="webelos">
+      <div class="rank-content">
+        <span class="grade-tag">4th Grade · Age 9–10</span>
+        <h2>⚜️ Webelos</h2>
+        <p><em>Webelos</em> stands for <strong>W</strong>e <strong>B</strong>e <strong>L</strong>oyally <strong>O</strong>bedient <strong>S</strong>couts. This rank bridges Cub Scouts toward Boy Scouts — with more independent camping, advanced badge work, and real leadership opportunities.</p>
+        <ul>
+          <li>Independent camping (without parents)</li>
+          <li>Advanced first aid and safety</li>
+          <li>Activity badges across many skill areas</li>
+          <li>Introduction to Boy Scout skills</li>
+        </ul>
+        <a class="bsa-link" href="https://www.scouting.org/programs/cub-scouts/adventures/webelos/" target="_blank" rel="noopener">View Webelos Adventures on Scouting.org ↗</a>
+      </div>
+      <div class="rank-spacer"><div class="rank-badge">⚜️</div></div>
+      <div class="rank-visual"><div class="big-emoji"><img src="images/scouting/Webelos.jpg" alt="Webelos Scout" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%;"></div><p>4th Grade</p><p style="font-size:.72rem;">Bridge to Boy Scouts</p></div>
+    </div>
+
+    <div class="rank-arrow">↓</div>
+
+    <!-- ARROW OF LIGHT -->
+    <div class="rank-block rank-aol fade-in" id="aol">
+      <div class="rank-visual"><div class="big-emoji"><img src="images/scouting/Arrows-of-Ligth-.jpg" alt="Arrow of Light Scout" style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%;"></div><p>5th Grade</p><p style="font-size:.72rem;">Highest Cub Scout rank</p></div>
+      <div class="rank-spacer"><div class="rank-badge">🏹</div></div>
+      <div class="rank-content">
+        <span class="grade-tag">5th Grade · Age 10–11</span>
+        <h2>🏹 Arrow of Light</h2>
+        <p>The <strong>Arrow of Light</strong> is the highest rank in Cub Scouting and the only badge that can be worn on the Boy Scout uniform. Earning it is a major achievement and sets scouts up perfectly for the Scouts BSA program.</p>
+        <ul>
+          <li>Highest honor in Cub Scouting</li>
+          <li>Leadership and community service projects</li>
+          <li>Formal crossover ceremony into Scouts BSA</li>
+          <li>Arrow of Light badge worn for life</li>
+        </ul>
+        <a class="bsa-link" href="https://www.scouting.org/programs/cub-scouts/adventures/arrow-of-light/" target="_blank" rel="noopener">View Arrow of Light on Scouting.org ↗</a>
+      </div>
+    </div>
+
+  </div><!-- /progression -->
+
+  <!-- CTA -->
+  <div style="background:var(--navy);border-radius:var(--radius-lg);padding:44px;text-align:center;" class="fade-in">
+    <span class="section-label" style="color:var(--gold);">Ready to Start?</span>
+    <h2 style="font-family:var(--font-display);font-size:1.8rem;color:var(--white);margin-bottom:14px;">Start Your Scout Journey Today</h2>
+    <p style="color:#94A3B8;margin-bottom:28px;font-size:.95rem;">Every scout starts at the rank for their current grade. No experience needed — just show up ready to learn!</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-gold">Join Pack 914 ⚜</a>
+      <a href="https://www.scouting.org/programs/cub-scouts/" target="_blank" rel="noopener" class="btn btn-secondary">Learn More at Scouting.org</a>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div><h4>⚜ Pack 914 — Livermore</h4><p>Empowering Livermore youth through character, citizenship, and outdoor adventure. Chartered by the Boy Scouts of America — Tri-Valley Council.</p></div>
+    <div><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li><li><a href="about.html">About</a></li><li><a href="calendar.html">Calendar</a></li><li><a href="ranks.html">Ranks</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Join Us</a></li><li><a href="resources.html">Resources</a></li></ul></div>
+    <div><h4>Ranks</h4><ul><li><a href="#lion">🦁 Lion (K)</a></li><li><a href="#tiger">🐯 Tiger (1st)</a></li><li><a href="#wolf">🐺 Wolf (2nd)</a></li><li><a href="#bear">🐻 Bear (3rd)</a></li><li><a href="#webelos">🏹 Webelos (4th)</a></li><li><a href="#aol">⚜️ Arrow of Light (5th)</a></li></ul></div>
+    <div><h4>Scout Law</h4><p style="font-size:.8rem;color:#94A3B8;line-height:1.9;">A Scout is: Trustworthy · Loyal · Helpful · Friendly · Courteous · Kind · Obedient · Cheerful · Thrifty · Brave · Clean · Reverent</p></div>
+  </div>
+  <div class="footer-bottom"><span>© <span id="current-year"></span> Cub Scout Pack 914 – Livermore, CA</span><span>Made with ❤️ by Pack 914 volunteers</span></div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
