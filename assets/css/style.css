@@ -264,7 +264,37 @@ footer a:hover { color:var(--gold); text-decoration:none; }
   *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
 }
 @media (max-width: 768px) {
+
   .hero-logo {
-    display: none;
+      display:none;
+  }
+
+  .rank-block {
+      display:block;
+      margin-bottom:40px;
+  }
+
+  .rank-badge {
+      margin:0 auto 16px;
+  }
+
+  .rank-visual {
+      display:none;
+  }
+
+  .rank-arrow {
+      display:none;
+  }
+
+  .bsa-link {
+      max-width:100%;
+      justify-content:center;
+      text-align:center;
+      flex-wrap:wrap;
+  }
+
+  .footer-bottom {
+      flex-direction:column;
+      text-align:center;
   }
 }
