@@ -63,7 +63,8 @@
 
     /* ABOUT STRIP */
     #about-strip { padding:56px 24px; }
-    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+    .about-grid { display:grid; grid-template-columns:1fr auto 1fr; gap:48px; align-items:stretch; }
+    .about-left { display: flex; flex-direction: column; gap: 20px;}
     .about-img { border-radius:var(--radius-md); box-shadow:var(--shadow-md); width:100%; aspect-ratio:4/3; object-fit:cover; }
     .fact-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:24px; }
     .fact-card { background:var(--gray-100); border-radius:var(--radius-sm); padding:14px; }
@@ -114,13 +115,17 @@
     @media(max-width:860px) {
       .hero-grid { grid-template-columns:1fr; }
       .hero-divider { display:none; }
-      .about-grid { grid-template-columns:1fr; }
+      .about-grid { grid-template-columns:1fr; gap: 20px; }
+      .about-left { order: 1; }
+      .about-right { order: 2; }
+      .vertical-divider { display: none; }
       .steps-row { grid-template-columns:1fr 1fr; }
     }
     @media(max-width:540px) {
       .steps-row { grid-template-columns:1fr; }
       .ranks-row .rank-pill { min-width:90px; }
     }
+
   </style>
 </head>
 <body>
@@ -200,10 +205,12 @@
   <!-- ════════════════════ ABOUT STRIP ════════════════════ -->
    <section id="about-strip" class="section--alt">
     <div class="section-inner">
-      <div class="about-grid" style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 30px; align-items: stretch;">
+      <!-- <div class="about-grid" style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 30px; align-items: stretch;"> -->
+      <div class="about-grid">
         
         <!-- Left Side: Scout Oath and Law Cards -->
-        <div class="fade-in" style="display: flex; flex-direction: column; gap: 20px;">
+        <!-- <div class="fade-in" style="display: flex; flex-direction: column; gap: 20px;"> -->
+        <div class="about-left fade-in">
           
           <!-- Scout Oath Card -->
           <div class="scout-card" style="background: #ffffff; padding: 24px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-left: 5px solid #1B3A6B;">
@@ -228,7 +235,8 @@
         <div class="vertical-divider" style="width: 1px; background-color: rgba(0,0,0,0.1); align-self: stretch;"></div>
 
         <!-- Right Side: Building Tomorrow's Leaders (Kept as is) -->
-        <div class="fade-in" style="animation-delay:.1s">
+        <!-- <div class="fade-in" style="animation-delay:.1s"> -->
+        <div class="about-right fade-in">  
           <span class="section-label">Who We Are</span>
           <h2 class="section-title">Building Tomorrow's Leaders</h2>
           <div class="divider"></div>
