@@ -263,3 +263,8 @@ footer a:hover { color:var(--gold); text-decoration:none; }
 @media (prefers-reduced-motion:reduce) {
   *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
 }
+@media (max-width: 768px) {
+  .hero-logo {
+    display: none;
+  }
+}
