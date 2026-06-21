@@ -139,8 +139,7 @@ function createEventCard(ev) {
 
         <div class="tags">${tags}</div>
 
-        // <div class="event-post-desc">${ev.description || ""}</div>
-<       div class="event-post-desc">${formatDescription(ev.description)}</div>
+        <div class="event-post-desc">${formatDescription(ev.description)}</div>
         <div style="margin-top:14px; display:flex; gap:10px;">
           ${signupBtn}
         </div>
