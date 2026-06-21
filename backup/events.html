@@ -8,7 +8,7 @@
   <link rel="icon" href="images/logo.jpg" type="image/jpeg"/>
   <link rel="stylesheet" href="assets/css/style.css"/>
   <script src="urls/config.js"></script>
-  <script src="assets/js/getEvents.js"></script>
+  <script src="data/events.js"></script>
   <style>
     body { padding-top: var(--nav-h); }
 
@@ -188,12 +188,10 @@
 <script src="assets/js/main.js"></script>
 <script>
 const EMOJI_MAP = { Camping:'⛺', Pinewood:'🏎️', 'Pack Meeting':'📋', Awards:'🏅', Family:'👨‍👩‍👧', Service:'🤝', Summer:'☀️', Holiday:'🎄', Outdoor:'🥾', 'All Ranks':'⚜' };
-let PACK_EVENTS = [];
 
 function renderEvents(filter = 'all') {
   const feed = document.getElementById('events-feed');
-  // const events = getAllEvents();
-  const events = PACK_EVENTS;
+  const events = getAllEvents();
   const filtered = filter === 'all' ? events : events.filter(e => e.tags && e.tags.includes(filter));
 
   if (!filtered.length) {
