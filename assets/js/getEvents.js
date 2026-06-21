@@ -14,32 +14,40 @@ async function loadEvents() {
   const response = await fetch(jsonUrl);
   const text = await response.text();
   const json = JSON.parse(
-
     text.substring(
       text.indexOf("{"),
       text.lastIndexOf("}") + 1
     )
   );
   console.log(json);
+
+  PACK_EVENTS = normalizeEvents(json);
+
+  console.log("Loaded events:", PACK_EVENTS);
+  
+  buildSidebarTags();
+  renderEvents();
 }
 
 /**
  * Normalize API data into UI-friendly structure
  */
-function normalizeEvents(data) {
-  return data.map(e => {
+function normalizeEvents(gvizData) {
+  return gvizData.table.rows.map(row => {
+    const c = row.c;
     return {
-      title: e.title || "",
-      category: e.category || "",
-      date: e.eventDate || "",
-      time: e.eventTime || "",
-      location: e.location || "",
-      description: e.description || "",
-      image: e.image || "",
-      signupUrl: e.signupUrl || "",
-      featured: (e.featured || "No").toLowerCase(),
-      displayOrder: parseInt(e.displayOrder || "100"),
-      status: (e.status || "Active")
+      timestamp: getCellValue(c[0]),
+      title: getCellValue(c[1]),
+      category: getCellValue(c[2]),
+      date: getCellValue(c[3]),
+      time: getCellValue(c[4]),
+      location: getCellValue(c[5]),
+      description: getCellValue(c[6]),
+      image: getCellValue(c[7]),
+      signupUrl: getCellValue(c[8]),
+      featured: getCellValue(c[9]) || "No",
+      displayOrder: Number(getCellValue(c[10]) || 100),
+      status: getCellValue(c[11]) || "Active"
     };
   });
 }
@@ -51,6 +59,13 @@ function normalizeEvents(data) {
  * 3. Date descending (latest first)
  * 4. Display Order fallback
  */
+
+function getCellValue(cell) {
+  if (!cell) return "";
+
+  return cell.f || cell.v || "";
+}
+
 function sortEvents(events) {
   return events.sort((a, b) => {
     if (a.featured === "yes" && b.featured !== "yes") return -1;
