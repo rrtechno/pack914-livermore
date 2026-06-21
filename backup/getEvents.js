@@ -9,6 +9,23 @@ let ACTIVE_FILTER = "all";
  * Fetch events from Google Sheets API
  */
 
+async function loadEvents_old() {
+  try {
+    const res = await fetch(jsonUrl);
+    const data = await res.json();
+
+    PACK_EVENTS = normalizeEvents(data);
+
+    renderEvents("all");
+    buildSidebarTags();
+
+  } catch (err) {
+    console.error("Failed to load events:", err);
+    document.getElementById("events-feed").innerHTML =
+      `<p style="color:red;">Failed to load events. Please try again later.</p>`;
+  }
+}
+
 async function loadEvents() {
 
   const response = await fetch(jsonUrl);
