@@ -67,6 +67,15 @@ function sortEvents(events) {
   });
 }
 
+function formatDescription(text) {
+  if (!text) return "";
+
+  return text
+    .split(/\n+/)
+    .map(p => `<p>${p}</p>`)
+    .join("");
+}
+
 /**
  * Render event cards
  */
@@ -130,10 +139,8 @@ function createEventCard(ev) {
 
         <div class="tags">${tags}</div>
 
-        <div class="event-post-desc">
-          ${ev.description || ""}
-        </div>
-
+        // <div class="event-post-desc">${ev.description || ""}</div>
+<       div class="event-post-desc">${formatDescription(ev.description)}</div>
         <div style="margin-top:14px; display:flex; gap:10px;">
           ${signupBtn}
         </div>
