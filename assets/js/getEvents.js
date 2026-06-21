@@ -1,14 +1,17 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxqlog2UJ_RWSaYQwgQTRL-fPEGAkP6aARzk_ndMx8njFveG4ScdUahO95KFNr7Uohx/exec";
+const jsonUrl = 'https://docs.google.com/spreadsheets/d/14VuOlhdmRekXIDpm0LQtJbyae4bh4xHQvuzloSNLWNQ/gviz/tq?tqx=out:json&sheet=Form%20Responses%201';
 
 let PACK_EVENTS = [];
 let ACTIVE_FILTER = "all";
 
+
 /**
  * Fetch events from Google Sheets API
  */
+
 async function loadEvents() {
   try {
-    const res = await fetch(API_URL);
+    const res = await fetch(jsonUrl);
     const data = await res.json();
 
     PACK_EVENTS = normalizeEvents(data);
