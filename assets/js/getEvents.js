@@ -1,5 +1,5 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxqlog2UJ_RWSaYQwgQTRL-fPEGAkP6aARzk_ndMx8njFveG4ScdUahO95KFNr7Uohx/exec";
-const jsonUrl = 'https://docs.google.com/spreadsheets/d/14VuOlhdmRekXIDpm0LQtJbyae4bh4xHQvuzloSNLWNQ/gviz/tq?tqx=out:json&sheet=Form%20Responses%201';
+const jsonUrl = "https://docs.google.com/spreadsheets/d/14VuOlhdmRekXIDpm0LQtJbyae4bh4xHQvuzloSNLWNQ/gviz/tq?tqx=out:json&sheet=Form%20Responses%201";
 
 let PACK_EVENTS = [];
 let ACTIVE_FILTER = "all";
@@ -9,7 +9,7 @@ let ACTIVE_FILTER = "all";
  * Fetch events from Google Sheets API
  */
 
-async function loadEvents() {
+async function loadEvents_old() {
   try {
     const res = await fetch(jsonUrl);
     const data = await res.json();
@@ -24,6 +24,20 @@ async function loadEvents() {
     document.getElementById("events-feed").innerHTML =
       `<p style="color:red;">Failed to load events. Please try again later.</p>`;
   }
+}
+
+async function loadEvents() {
+
+  const response = await fetch(jsonUrl);
+  const text = await response.text();
+  const json = JSON.parse(
+
+    text.substring(
+      text.indexOf("{"),
+      text.lastIndexOf("}") + 1
+    )
+  );
+  console.log(json);
 }
 
 /**
