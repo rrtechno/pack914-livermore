@@ -57,6 +57,34 @@ function normalizeEvents(gvizData) {
  * 4. Display Order fallback
  */
 
+function buildFilterButtons() {
+  const filterBar = document.getElementById("filter-bar");
+  const categories = [
+    ...new Set(
+      PACK_EVENTS
+        .map(e => e.category)
+        .filter(Boolean)
+    )
+  ].sort();
+
+  let html = `
+    <button class="filter-btn active" data-filter="all">
+      All Events
+    </button>
+  `;
+  categories.forEach(category => {
+    html += `
+      <button
+        class="filter-btn"
+        data-filter="${category}">
+        ${EMOJI_MAP[category] || "⚜"} ${category}
+      </button>
+    `;
+  });
+  filterBar.innerHTML = html;
+}
+
+
 function getCellValue(cell) {
   if (!cell) return "";
 
