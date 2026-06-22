@@ -59,6 +59,16 @@ function normalizeEvents(gvizData) {
 
 function buildFilterButtons() {
   const filterBar = document.getElementById("filter-bar");
+  const EMOJI_MAP = {
+  "Pack Meeting": "📋",
+  "Den Meeting": "👥",
+  "Camping": "⛺",
+  "Hiking": "🥾",
+  "Adventure": "🧭",
+  "Pinewood Derby": "🏎️",
+  Awards:'🏅',
+  "Other": "⚜"
+    };
   const categories = [
     ...new Set(
       PACK_EVENTS
