@@ -133,13 +133,16 @@
     <!-- MAIN FEED -->
     <div>
       <!-- Filter tags -->
-      <div class="filter-bar" id="filter-bar" role="group" aria-label="Filter events by type">
+      <div class="filter-bar-old" id="filter-bar-old" role="group" aria-label="Filter events by type">
         <button class="filter-btn active" data-filter="all">All Events</button>
         <button class="filter-btn" data-filter="Camping">⛺ Camping</button>
         <button class="filter-btn" data-filter="Pinewood">🏎️ Pinewood</button>
         <button class="filter-btn" data-filter="Pack Meeting">📋 Meetings</button>
         <button class="filter-btn" data-filter="Awards">🏅 Awards</button>
         <button class="filter-btn" data-filter="Family">👨‍👩‍👧 Family</button>
+      </div>
+
+      <div class="filter-bar" id="filter-bar" role="group" aria-label="Filter events by type">
       </div>
 
       <div id="events-feed">
@@ -187,14 +190,24 @@
 
 <script src="assets/js/main.js"></script>
 <script>
-const EMOJI_MAP = { Camping:'⛺', Pinewood:'🏎️', 'Pack Meeting':'📋', Awards:'🏅', Family:'👨‍👩‍👧', Service:'🤝', Summer:'☀️', Holiday:'🎄', Outdoor:'🥾', 'All Ranks':'⚜' };
+const EMOJI_MAP_OLD = { Camping:'⛺', Pinewood:'🏎️', 'Pack Meeting':'📋', Awards:'🏅', Family:'👨‍👩‍👧', Service:'🤝', Summer:'☀️', Holiday:'🎄', Outdoor:'🥾', 'All Ranks':'⚜' };
+const EMOJI_MAP = {
+  "Pack Meeting": "📋",
+  "Den Meeting": "👥",
+  "Camping": "⛺",
+  "Hiking": "🥾",
+  "Adventure": "🧭",
+  "Pinewood Derby": "🏎️",
+  Awards:'🏅',
+  "Other": "⚜"
+};
 let PACK_EVENTS = [];
 
 function renderEvents(filter = 'all') {
   const feed = document.getElementById('events-feed');
   // const events = getAllEvents();
   const events = PACK_EVENTS;
-  const filtered = filter === 'all' ? events : events.filter(e => e.tags && e.tags.includes(filter));
+  const filtered = filter === 'all' ? events : events.filter(e => e.category === filter);
 
   if (!filtered.length) {
     feed.innerHTML = '<p style="color:var(--gray-500);padding:20px 0;">No events found for this filter.</p>';
@@ -234,7 +247,9 @@ function renderEvents(filter = 'all') {
 
 // Build sidebar tag list
 function buildSidebarTags() {
-  const all = PACK_EVENTS.flatMap(e => e.tags||[]);
+  // const all = PACK_EVENTS.flatMap(e => e.tags||[]);
+  const all = PACK_EVENTS.map(e => e.category).filter(Boolean);
+
   const counts = {};
   all.forEach(t => counts[t] = (counts[t]||0)+1);
   const ul = document.getElementById('sidebar-tags');
@@ -261,6 +276,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+function buildFilterButtons() {
+
+  const filterBar = document.getElementById("filter-bar");
+
+  const categories = [
+    ...new Set(
+      PACK_EVENTS
+        .map(e => e.category)
+        .filter(Boolean)
+    )
+  ].sort();
+
+  let html = `
+    <button class="filter-btn active" data-filter="all">
+      All Events
+    </button>
+  `;
+
+  categories.forEach(category => {
+
+    html += `
+      <button
+        class="filter-btn"
+        data-filter="${category}">
+        ${EMOJI_MAP[category] || "⚜"} ${category}
+      </button>
+    `;
+
+  });
+
+  filterBar.innerHTML = html;
+}
 </script>
 
 </body>

@@ -19,12 +19,9 @@ async function loadEvents() {
       text.lastIndexOf("}") + 1
     )
   );
-  console.log(json);
 
   PACK_EVENTS = normalizeEvents(json);
-
-  console.log("Loaded events:", PACK_EVENTS);
-  
+  buildFilterButtons();
   buildSidebarTags();
   renderEvents();
 }
