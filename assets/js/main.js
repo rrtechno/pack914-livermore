@@ -177,14 +177,9 @@ function renderUpcomingMiniCards(containerId, count = 5) {
   }
 
   el.innerHTML = events.map(ev => {
-    const d = new Date(ev.date);
-    const day = d.toLocaleString('en-US', {
-      day: '2-digit'
-    });
-
-    const month = d.toLocaleString('en-US', {
-      month: 'short'
-    });
+  const d = parseDate(ev.date);
+  const day = d.toLocaleString('en-US', { day: '2-digit' });
+  const month = d.toLocaleString('en-US', { month: 'short' });
 
     return `
       <div class="event-mini fade-in">
@@ -206,6 +201,14 @@ function renderUpcomingMiniCards(containerId, count = 5) {
       </div>
     `;
   }).join('');
+}
+
+function parseDate(dateStr) {
+  if (!dateStr) return new Date();
+
+  // handles "7/3/2026" safely
+  const [m, d, y] = dateStr.split('/');
+  return new Date(y, m - 1, d);
 }
 
 /** Strip HTML tags from a string */
