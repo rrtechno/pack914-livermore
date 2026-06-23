@@ -177,11 +177,29 @@ function renderUpcomingMiniCards(containerId, count = 5) {
   }
 
   el.innerHTML = events.map(ev => {
+  const d = parseDate(ev.date);
+  const day = d.toLocaleString('en-US', { day: '2-digit' });
+  const month = d.toLocaleString('en-US', { month: 'short' });
+
     return `
       <div class="event-mini fade-in">
+        <div class="event-mini-date">
+          <div class="day">${day}</div>
+          <div class="month">${month}</div>
+        </div>
 
         <div class="event-mini-info">
           <h4>${ev.title}</h4>
+          <div class="meta">
+            🕐 ${ev.time || ''}
+            📍 ${ev.location || ''}
+          </div>
+         <div class="desc">
+            ${(ev.description || "")
+              .replace(/\n/g, " ")
+              .trim()
+              .slice(0, 90)}...
+          </div>
         </div>
       </div>
     `;
