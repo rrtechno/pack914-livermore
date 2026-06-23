@@ -138,17 +138,64 @@ function renderUpcomingMiniCards_old(containerId, count = 5) {
   }).join('');
 }
 
-function renderUpcomingMiniCards(containerId) {
+function renderUpcomingMiniCards(containerId, count = 5) {
 
-  document.getElementById(containerId).innerHTML = `
-    <div style="
-      background:red;
-      color:white;
-      padding:20px;
-      margin:20px;">
-      TEST CARD
-    </div>
-  `;
+  const el = document.getElementById(containerId);
+
+  if (!el) return;
+
+  const events = getUpcomingEvents(count);
+
+  console.log("Homepage Events:", events);
+
+  if (!events.length) {
+    el.innerHTML = `
+      <div style="color:var(--gray-500);padding:12px;">
+        No upcoming events.
+      </div>
+    `;
+    return;
+  }
+
+  el.innerHTML = events.map(ev => {
+
+    const d = new Date(ev.date);
+
+    const day = d.toLocaleString('en-US', {
+      day: '2-digit'
+    });
+
+    const month = d.toLocaleString('en-US', {
+      month: 'short'
+    });
+
+    return `
+      <div class="event-mini fade-in">
+
+        <div class="event-mini-date">
+          <div class="day">${day}</div>
+          <div class="month">${month}</div>
+        </div>
+
+        <div class="event-mini-info">
+
+          <h4>${ev.title}</h4>
+
+          <div class="meta">
+            🕐 ${ev.time || ''}
+            ·
+            📍 ${ev.location || ''}
+          </div>
+
+          <div class="desc">
+            ${(ev.description || '').substring(0, 90)}...
+          </div>
+
+        </div>
+
+      </div>
+    `;
+  }).join('');
 }
 
 /** Strip HTML tags from a string */
