@@ -145,6 +145,24 @@ function cleanText(text) {
 }
 
 function renderUpcomingMiniCards(containerId, count = 5) {
+
+  const el = document.getElementById(containerId);
+  console.log("container:", el);
+  const events = getUpcomingEvents(count);
+  console.log("events:", events);
+
+  el.innerHTML = events.map(ev => `
+    <div class="event-mini">
+      <div class="event-mini-info">
+        <h4>TEST TITLE</h4>
+        <div class="meta">TEST META</div>
+        <div class="desc">TEST DESCRIPTION</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderUpcomingMiniCards_new(containerId, count = 5) {
   const el = document.getElementById(containerId);
   if (!el) return;
   const events = getUpcomingEvents(count);

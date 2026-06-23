@@ -299,3 +299,15 @@ footer a:hover { color:var(--gold); text-decoration:none; }
       text-align:center;
   }
 }
+
+.event-mini {
+  border: 2px solid red !important;
+  background: yellow !important;
+}
+
+.event-mini * {
+  color: black !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
