@@ -245,7 +245,7 @@ function createEventCard(ev) {
 function getUpcomingEvents(count = 5) {
   const today = new Date();
   return [...PACK_EVENTS]
-    .sort((a, b) => new Date(a.date) - new Date(b.date))
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, count);
 }
 
