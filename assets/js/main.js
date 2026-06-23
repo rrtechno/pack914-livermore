@@ -178,7 +178,7 @@ function renderUpcomingMiniCards(containerId, count = 5) {
 
   el.innerHTML = events.map(ev => {
     return `
-      <div class="event-mini fade-in">
+      <div>
 
         <div>
           <h4>${ev.title}</h4>
