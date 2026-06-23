@@ -124,7 +124,6 @@ function buildFilterButtons_old() {
 }
 
 function buildFilterButtons() {
-
   const el = document.getElementById("filter-bar");
   if (!el) return;   // 🔥 CRITICAL FIX
   const categories = [...new Set(PACK_EVENTS.map(e => e.category))];
@@ -175,6 +174,7 @@ function renderEvents(filter = "all") {
   ACTIVE_FILTER = filter;
 
   const feed = document.getElementById("events-feed");
+  if (!feed) return;
 
   let events = [...PACK_EVENTS];
 
@@ -261,12 +261,12 @@ function getAllEvents() {
  * Sidebar Tags
  */
 function buildSidebarTags() {
+  const ul = document.getElementById("sidebar-tags");
+  if (!ul) return;
   const all = PACK_EVENTS.map(e => e.category).filter(Boolean);
 
   const counts = {};
   all.forEach(t => counts[t] = (counts[t] || 0) + 1);
-
-  const ul = document.getElementById("sidebar-tags");
 
   ul.innerHTML = Object.entries(counts)
     .map(([tag, count]) =>
