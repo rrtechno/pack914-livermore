@@ -144,7 +144,7 @@ function cleanText(text) {
     .trim();
 }
 
-function renderUpcomingMiniCards(containerId, count = 5) {
+function renderUpcomingMiniCards_test(containerId, count = 5) {
 
   const el = document.getElementById(containerId);
   console.log("container:", el);
@@ -162,7 +162,7 @@ function renderUpcomingMiniCards(containerId, count = 5) {
   `).join('');
 }
 
-function renderUpcomingMiniCards_new(containerId, count = 5) {
+function renderUpcomingMiniCards(containerId, count = 5) {
   const el = document.getElementById(containerId);
   if (!el) return;
   const events = getUpcomingEvents(count);
