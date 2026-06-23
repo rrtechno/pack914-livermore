@@ -180,7 +180,7 @@ function renderUpcomingMiniCards(containerId, count = 5) {
     return `
       <div class="event-mini fade-in">
 
-        <div class="event-mini-info">
+        <div>
           <h4>${ev.title}</h4>
         </div>
       </div>
