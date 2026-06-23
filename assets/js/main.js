@@ -165,24 +165,42 @@ function renderUpcomingMiniCards_test(containerId, count = 5) {
 function renderUpcomingMiniCards(containerId, count = 5) {
   const el = document.getElementById(containerId);
   if (!el) return;
+
   const events = getUpcomingEvents(count);
-  console.log("Homepage Events:", events);
+
   if (!events.length) {
-    el.innerHTML = `
-      <div style="color:var(--gray-500);padding:12px;">
-        No upcoming events.
-      </div>
-    `;
+    el.innerHTML = `<div style="color:#64748b;padding:10px;">No upcoming events</div>`;
     return;
   }
 
   el.innerHTML = events.map(ev => {
-    return `
-      <div>
+    const d = new Date(ev.date);
+    const day = d.toLocaleString('en-US', { day: '2-digit' });
+    const month = d.toLocaleString('en-US', { month: 'short' });
 
-        <div>
-          <h4>${ev.title}</h4>
+    return `
+      <div class="upcoming-card">
+
+        <div class="upcoming-date">
+          <div class="day">${day}</div>
+          <div class="month">${month}</div>
         </div>
+
+        <div class="upcoming-body">
+          <div class="title">${ev.title || ''}</div>
+
+          <div class="meta">
+            🕐 ${ev.time || ''} · 📍 ${ev.location || ''}
+          </div>
+
+          <div class="desc">
+            ${(ev.description || '')
+              .replace(/\n/g, ' ')
+              .trim()
+              .slice(0, 120)}
+          </div>
+        </div>
+
       </div>
     `;
   }).join('');
