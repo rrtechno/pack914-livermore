@@ -128,8 +128,43 @@
       .steps-row { grid-template-columns:1fr; }
       .ranks-row .rank-pill { min-width:90px; }
     }
-
+    .hero-social{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:20px 0 24px;
+    }
+    .social-label{
+      font-size:.95rem;
+      font-weight:600;
+      color:var(--gray-600);
+    }
+    .hero-social a{
+      width:40px;
+      height:40px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      background:#fff;
+      color:#1e3a8a;
+      text-decoration:none;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+      transition:all .25s ease;
+    }
+    .hero-social a:hover{
+      transform:translateY(-3px);
+      box-shadow:0 8px 20px rgba(0,0,0,.15);
+    }
+    .hero-social i{
+      font-size:1.1rem;
+    }
+    .social-icon-img{
+      width:20px;
+      height:20px;
+    }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
@@ -169,7 +204,6 @@
 
         <!-- LEFT: Pack intro -->
         <div class="hero-left fade-in">
-          <br>
           <div class="hero-badge">⚜ Livermore, California</div>
           <h2>Adventure Starts Here</h2>
           <h2 class="hero-title"><span class="highlight">Cub Scout Pack 914</span></h2>
@@ -182,6 +216,20 @@
             <div><div class="stat-num">914</div><div class="stat-label">Pack No.</div></div>
             <div><div class="stat-num">K–5</div><div class="stat-label">Grades</div></div>
             <div><div class="stat-num">Scouting</div><div class="stat-label">America</div></div>
+          </div>
+        
+          <!-- Social Media -->
+          <div class="hero-social">
+            <span class="social-label">Follow us on</span>
+            <a href="https://facebook.com/" target="_blank" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://nextdoor.com/pages/cub-scout-pack-914-livermore-ca/" target="_blank" aria-label="Nextdoor">
+              <img src="images/nextdoor-icon.jpeg" alt="Nextdoor" class="social-icon-img">
+            </a>
           </div>
         </div>
 
