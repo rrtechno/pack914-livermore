@@ -86,7 +86,7 @@ function normalizeEvents(gvizData) {
  * 4. Display Order fallback
  */
 
-function buildFilterButtons() {
+function buildFilterButtons_old() {
   const filterBar = document.getElementById("filter-bar");
   const EMOJI_MAP = {
   "Pack Meeting": "📋",
@@ -121,6 +121,19 @@ function buildFilterButtons() {
     `;
   });
   filterBar.innerHTML = html;
+}
+
+function buildFilterButtons() {
+
+  const el = document.getElementById("filter-bar");
+  if (!el) return;   // 🔥 CRITICAL FIX
+  const categories = [...new Set(PACK_EVENTS.map(e => e.category))];
+  el.innerHTML = `
+    <button class="filter-btn active" data-filter="all">All Events</button>
+    ${categories.map(c =>
+      `<button class="filter-btn" data-filter="${c}">${c}</button>`
+    ).join('')}
+  `;
 }
 
 
