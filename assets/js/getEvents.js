@@ -215,11 +215,13 @@ function createEventCard(ev) {
 /* upcoming events for homepage mini-cards */
 function getUpcomingEvents(count = 5) {
   const today = new Date();
-  return sortEvents(PACK_EVENTS)
-    .filter(ev => {
-      const evDate = new Date(ev.date);
-      return ev.upcoming && evDate >= today;
+  return [...PACK_EVENTS]
+    .filter(e => {
+      if (!e.date) return false;
+      const eventDate = new Date(e.date);
+      return eventDate >= today;
     })
+    .sort((a, b) => new Date(a.date) - new Date(b.date))
     .slice(0, count);
 }
 
