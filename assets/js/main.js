@@ -138,6 +138,12 @@ function renderUpcomingMiniCards_old(containerId, count = 5) {
   }).join('');
 }
 
+function cleanText(text) {
+  return (text || "")
+    .replace(/\\n/g, "\n")
+    .trim();
+}
+
 function renderUpcomingMiniCards(containerId, count = 5) {
 
   const el = document.getElementById(containerId);
@@ -188,7 +194,7 @@ function renderUpcomingMiniCards(containerId, count = 5) {
           </div>
 
           <div class="desc">
-            ${(ev.description || '').substring(0, 90)}...
+            ${cleanText(ev.description).slice(0, 90)}...
           </div>
 
         </div>
