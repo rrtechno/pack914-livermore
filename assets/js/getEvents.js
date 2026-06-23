@@ -12,7 +12,9 @@ let ACTIVE_FILTER = "all";
 async function loadEvents() {
 
   const response = await fetch(jsonUrl);
+
   const text = await response.text();
+
   const json = JSON.parse(
     text.substring(
       text.indexOf("{"),
@@ -21,22 +23,30 @@ async function loadEvents() {
   );
 
   PACK_EVENTS = normalizeEvents(json);
-  
+
+  console.log("Loaded Events:", PACK_EVENTS);
+
+  // Events page
   if (typeof buildFilterButtons === "function") {
-  buildFilterButtons();
+    buildFilterButtons();
   }
 
   if (typeof buildSidebarTags === "function") {
-  buildSidebarTags();
+    buildSidebarTags();
   }
 
   if (typeof renderEvents === "function") {
-  renderEvents();
+    renderEvents();
   }
 
-  if (typeof renderUpcomingMiniCards === "function") {
-  renderUpcomingMiniCards("home-event-cards", 5);
+  // Homepage
+  if (
+    typeof renderUpcomingMiniCards === "function" &&
+    document.getElementById("home-event-cards")
+  ) {
+    renderUpcomingMiniCards("home-event-cards", 5);
   }
+
 }
 
 /**
@@ -216,11 +226,6 @@ function createEventCard(ev) {
 function getUpcomingEvents(count = 5) {
   const today = new Date();
   return [...PACK_EVENTS]
-    .filter(e => {
-      if (!e.date) return false;
-      const eventDate = new Date(e.date);
-      return eventDate >= today;
-    })
     .sort((a, b) => new Date(a.date) - new Date(b.date))
     .slice(0, count);
 }

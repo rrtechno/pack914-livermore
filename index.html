@@ -357,19 +357,5 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
-<script>
-  // Render upcoming event mini cards on homepage
-  document.addEventListener('DOMContentLoaded', () => {
-    renderUpcomingMiniCards('home-event-cards', 5);
-    // Re-run fade observer for dynamically added cards
-    setTimeout(() => {
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
-      }, { threshold:0.05 });
-      document.querySelectorAll('#home-event-cards .fade-in').forEach(el => { el.classList.remove('visible'); io.observe(el); });
-    }, 50);
-  });
-</script>
-
 </body>
 </html>
