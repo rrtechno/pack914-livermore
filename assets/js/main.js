@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderUpcomingMiniCards(containerId, count = 5) {
   const el = document.getElementById(containerId);
   if (!el || typeof PACK_EVENTS === 'undefined') return;
-  const events = getUpcomingEvents(count);
+  const events = getUpcomingEvents(count); 
   el.innerHTML = events.map(ev => {
     const d = new Date(ev.dateISO + 'T12:00:00');
     const day   = d.toLocaleString('en-US', { day:'2-digit' });

@@ -67,6 +67,78 @@
       .oath-law    { grid-template-columns:1fr; }
       .mission-banner { padding:28px 24px; }
     }
+
+    /* Pack Dues */
+    .dues-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      margin:30px 0;
+    }
+    .fee-card{
+      background:#fff;
+      border:1px solid var(--gray-200);
+      border-radius:16px;
+      padding:24px;
+      text-align:center;
+      box-shadow:var(--shadow-sm);
+    }
+    .fee-card.featured{
+      border:2px solid var(--gold);
+    }
+    .fee-amount{
+      font-size:2rem;
+      font-weight:800;
+      color:var(--navy);
+      margin-bottom:8px;
+    }
+    .fee-title{
+      font-weight:700;
+      margin-bottom:8px;
+    }
+    .fee-desc{
+      font-size:.9rem;
+      color:var(--gray-600);
+    }
+    .dues-section{
+      margin-top:32px;
+    }
+    .dues-section h3{
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+    .benefits-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    .benefits-list li{
+      padding: 4px;
+      border-bottom:0.5px solid var(--gray-100);
+    }
+    .fundraising-box{
+      margin-top:32px;
+      padding:24px;
+      border-radius:16px;
+      background:#FFF9E8;
+      border-left:5px solid var(--gold);
+    }
+    .fundraising-box h3{
+      margin-bottom:12px;
+      color:var(--navy);
+    }
+    .fundraising-box p{
+      margin-bottom:16px;
+    }
+
+@media (max-width:768px){
+  .fee-amount{
+    font-size:1.7rem;
+  }
+  .dues-grid{
+    gap:16px;
+  }
+}
   </style>
 </head>
 <body>
@@ -114,7 +186,7 @@
       <a href="contact.html" class="btn btn-primary">Join Pack 914 →</a>
     </div>
     <div class="fade-in" style="animation-delay:.12s">
-      <img src="images/scouting/camping.jpg" alt="Pack 914 scouts"
+      <img src="images/logo.jpg" alt="Pack 914 scouts"
            onerror="this.src='https://placehold.co/540x400/1B3A6B/FFF?text=Pack+914'"/>
     </div>
   </div>
@@ -141,8 +213,88 @@
     <div class="value-card fade-in"><div class="icon">❤️</div><h3>Inclusion</h3><p>Pack 914 welcomes all boys and girls regardless of background. Every scout belongs here.</p></div>
   </div>
 
-  <!-- LEADERSHIP -->
+  <!-- PACK DUES -->
   <div class="fade-in">
+    <span class="section-label">Cost of Cub Scouting</span>
+    <h2 class="section-title">Pack Dues & Membership Fees</h2>
+    <div class="divider"></div>
+
+    <div class="dues-grid">
+
+      <div class="fee-card">
+        <div class="fee-amount">$85</div>
+        <div class="fee-title">National Membership Fee</div>
+        <div class="fee-desc">Scouting America annual registration fee.</div>
+      </div>
+
+      <div class="fee-card">
+        <div class="fee-amount">$149</div>
+        <div class="fee-title">Council Program Fee</div>
+        <div class="fee-desc">
+          Golden Gate Area Council fee.
+          <br>
+          <a href="https://goldengatescouting.org/membership/program-fees/"
+            target="_blank" rel="noopener">
+            View Current Council Fees →
+          </a>
+        </div>
+      </div>
+
+      <div class="fee-card featured">
+        <div class="fee-amount">$250</div>
+        <div class="fee-title">Pack 914 Annual Fee</div>
+        <div class="fee-desc">
+          May be reduced for new Scouts depending on joining date.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="dues-section">
+
+      <h3>⚜ What's Included in Pack 914 Dues?</h3>
+
+      <ul class="benefits-list">
+        <li>🏅 Advancement awards, loops, pins, and patches</li>
+        <li>📦 Pack equipment and storage costs</li>
+        <li>🎉 Blue & Gold Banquet</li>
+        <li>🏎️ Pinewood Derby</li>
+        <li>⛵ Raingutter Regatta</li>
+        <li>📋 Six additional Pack meetings throughout the year</li>
+        <li>🥾 Service projects, hikes, camping, and special activities</li>
+        <li>🎒 Rank hat, neckerchief, slide, scarf, and handbook at crossover</li>
+      </ul>
+    </div>
+
+    <div class="fundraising-box">
+      <h3>🍿 Reduce Your Costs Through Fundraising</h3>
+      <p>
+        Many families significantly reduce or eliminate Pack dues through our annual
+        popcorn fundraiser held each August and September.
+      </p>
+      <a href="https://pack914livermore.wordpress.com/popcorn-sales/"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-primary">
+        Learn About Popcorn Fundraising →
+      </a>
+    </div>
+    <div class="dues-section">
+      <h3>Need More Information?</h3>
+      <p>
+        Contact our Membership Chair, Re-Registration Chair, or any Mighty 914 leader
+        for details regarding dues, fundraising opportunities, or financial assistance. Pack 914 programs are funded through a 
+        combination of dues and council-approved
+        fundraising activities. Additional support comes from Friends of Scouting,
+        community donations, and council resources that provide leadership training,
+        outdoor programs, service centers, facilities, and professional support for
+        local Scouting units.
+      </p>
+    </div>
+  </div>
+
+  <!-- LEADERSHIP -->
+  <div style="margin-top:30px;" class="fade-in">
     <span class="section-label">Who Runs the Pack</span>
     <h2 class="section-title">Pack Leadership</h2>
     <div class="divider"></div>

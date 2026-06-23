@@ -132,7 +132,7 @@ const PACK_EVENTS = [
 ];
 
 // ── Helper: get upcoming events sorted soonest first ──────────────────────
-function getUpcomingEvents(count = 5) {
+function getUpcomingEvents(count = 5) { 
   return PACK_EVENTS
     .filter(e => e.upcoming)
     .sort((a, b) => new Date(b.dateISO) - new Date(a.dateISO))
