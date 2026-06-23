@@ -21,9 +21,22 @@ async function loadEvents() {
   );
 
   PACK_EVENTS = normalizeEvents(json);
+  
+  if (typeof buildFilterButtons === "function") {
   buildFilterButtons();
+  }
+
+  if (typeof buildSidebarTags === "function") {
   buildSidebarTags();
+  }
+
+  if (typeof renderEvents === "function") {
   renderEvents();
+  }
+
+  if (typeof renderUpcomingMiniCards === "function") {
+  renderUpcomingMiniCards("home-event-cards", 5);
+  }
 }
 
 /**
@@ -197,6 +210,25 @@ function createEventCard(ev) {
       </div>
     </article>
   `;
+}
+
+/* upcoming events for homepage mini-cards */
+function getUpcomingEvents(count = 5) {
+  const today = new Date();
+  return sortEvents(PACK_EVENTS)
+    .filter(ev => {
+      const evDate = new Date(ev.date);
+      return ev.upcoming && evDate >= today;
+    })
+    .slice(0, count);
+}
+
+function getAllEvents() {
+
+  return [...PACK_EVENTS]
+
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
 }
 
 /**
