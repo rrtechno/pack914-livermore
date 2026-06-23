@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ══════════════════════════════════════════════════════════════ */
 
 /** Render up to `count` upcoming event mini-cards into `containerId` */
-function renderUpcomingMiniCards(containerId, count = 5) {
+function renderUpcomingMiniCards_old(containerId, count = 5) {
   const el = document.getElementById(containerId);
   if (!el || typeof PACK_EVENTS === 'undefined') return;
   const events = getUpcomingEvents(count); 
@@ -136,6 +136,19 @@ function renderUpcomingMiniCards(containerId, count = 5) {
         </div>
       </div>`;
   }).join('');
+}
+
+function renderUpcomingMiniCards(containerId) {
+
+  document.getElementById(containerId).innerHTML = `
+    <div style="
+      background:red;
+      color:white;
+      padding:20px;
+      margin:20px;">
+      TEST CARD
+    </div>
+  `;
 }
 
 /** Strip HTML tags from a string */
