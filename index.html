@@ -16,13 +16,19 @@
 
     /* HERO */
     #home {
-      background: linear-gradient(155deg,#EFF6FF 0%,#FEF9EC 60%,#fff 100%), url("images/CubScoutLogo.png");
+    position: relative;
+    background: linear-gradient(155deg,#EFF6FF 0%,#FEF9EC 60%,#fff 100%);
+    }
+    #home::before {
+      content: "";
+      position: absolute;
+      inset: 0;
 
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: overlay;
+      background: url("images/scoutblue.webp") center center no-repeat;
+      background-size: 80%;
 
-      padding: 56px 24px 64px;
+      opacity: 0.15;
+      pointer-events: none;
     }
     .hero-wrap { max-width:var(--max-w); margin:0 auto; }
 
@@ -194,6 +200,7 @@
         <!-- RIGHT: Upcoming events -->
         <div class="hero-right fade-in" style="animation-delay:.1s">
           <div class="hero-events">
+            <BR>
             <div class="hero-events-header">📅 Upcoming Events</div>
             <div id="home-event-cards">
               <!-- Rendered by JS from data/events.js -->
