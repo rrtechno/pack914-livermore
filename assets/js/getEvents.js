@@ -25,6 +25,17 @@ async function loadEvents() {
   PACK_EVENTS = normalizeEvents(json);
 
   console.log("Loaded Events:", PACK_EVENTS);
+  console.log("Checking homepage render...");
+  console.log(typeof renderUpcomingMiniCards);
+  console.log(document.getElementById("home-event-cards"));
+
+    if (
+    typeof renderUpcomingMiniCards === "function" &&
+    document.getElementById("home-event-cards")
+  ) {
+    console.log("Calling renderUpcomingMiniCards");
+    renderUpcomingMiniCards("home-event-cards", 5);
+  }
 
   // Events page
   if (typeof buildFilterButtons === "function") {
@@ -40,12 +51,7 @@ async function loadEvents() {
   }
 
   // Homepage
-  if (
-    typeof renderUpcomingMiniCards === "function" &&
-    document.getElementById("home-event-cards")
-  ) {
-    renderUpcomingMiniCards("home-event-cards", 5);
-  }
+
 
 }
 
