@@ -38,6 +38,38 @@
 
     /* left side */
     .hero-left {}
+    .hero-left {
+      position: relative;
+      overflow: hidden; /* Keeps the giant emoji inside the box boundaries */
+      /*background-color: rgba(173, 216, 230, 0.2); /* Light blue transparent background */
+      z-index: 1; /* Sets a base layer stacking context */
+    }
+    .hero-left::before {
+      content: "⚜";
+      color:var(--blue);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      
+      /* Adaptive sizing based on container width or height, whichever is smaller */
+      font-size: 70vmin; 
+      
+      /* Makes the emoji semi-transparent */
+      opacity: 0.15; 
+      
+      /* Pushes the emoji behind the text and buttons */
+      z-index: -1; 
+      
+      /* Prevents user from accidentally selecting the emoji like text */
+      user-select: none;
+      pointer-events: none;
+      
+      /* Centers the text layout inside the pseudo-element */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .hero-badge {
       display:inline-flex; align-items:center; gap:6px;
       background:var(--gold-lt); color:var(--navy);
@@ -302,7 +334,7 @@
 
       </div>
           <div class="fact-grid">
-            <div class="fact-card"><div class="icon">📍</div><h4>Location</h4><p>Livermore, CA — Tri-Valley Council</p></div>
+            <div class="fact-card"><div class="icon">📍</div><h4>Location</h4><p>Livermore, CA — Twin Valley Distict</p></div>
             <div class="fact-card"><div class="icon">📅</div><h4>Meetings</h4><p>Monthly Pack + Den meetings</p></div>
             <div class="fact-card"><div class="icon">⚜</div><h4>Chartered By</h4><p>American Legion Post 47 of Livermore</p></div>
             <div class="fact-card"><div class="icon">👨‍👩‍👧‍👦</div><h4>Family-Led</h4><p>Volunteer parent leaders</p></div>
